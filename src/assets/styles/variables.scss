@@ -1,5 +1,3 @@
-@use "theme";
-
 // Global variables
 $max-content-width: 1500px;
 
@@ -22,15 +20,15 @@ $padding-xxl: 40px;
 $padding-xxxl: 48px;
 
 // Light Theme Colors
-$background-light: #fcf5ed; // Background color
-$text-primary-light: #1f1717; // Primary text color (black)
-$text-secondary-light: #ce5a67; // Secondary text color (gray)
-$border-light: #f4bf96; // Border color (light gray)
+$background-light: #fcf5ed;
+$text-primary-light: #1f1717;
+$text-secondary-light: #ce5a67;
+$border-light: #f4bf96;
 
 // Dark Theme Colors
-$background-dark: #1f1717; // Deep warm brown, complementing the light mode text
-$text-primary-dark: #fcf5ed; // Light cream for high contrast on dark backgrounds
-$text-secondary-dark: #f4bf96; // Warm orange-tan, keeping the vintage vibe
+$background-dark: #1f1717;
+$text-primary-dark: #fcf5ed;
+$text-secondary-dark: #f4bf96;
 $border-dark: #ce5a67;
 
 // Theme mixins

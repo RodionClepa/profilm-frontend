@@ -9,9 +9,9 @@
 select {
   padding: 4px 8px;
   border-radius: 4px;
-  background-color: var(--bgColor);
-  color: var(--textColor);
-  border: 1px solid var(--borderColor);
+  background-color: $bg-color;
+  color: $text-color;
+  border: 1px solid $border-color;
 }
 
 .sorting-content {
