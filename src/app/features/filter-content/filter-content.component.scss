@@ -1,0 +1,54 @@
+@use "variables" as *;
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+}
+
+.sorting-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: $gap-md;
+
+  .filters {
+    min-width: 250px;
+    max-width: 250px;
+
+    ul {
+      position: sticky;
+      top: 55px;
+      background-color: #fff;
+      padding: $padding-sm;
+      list-style: none;
+    }
+  }
+
+  .films-grid {
+    flex: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(250px, calc(50% - 10px)), 1fr)
+    );
+    grid-gap: $gap-xs;
+    grid-auto-rows: 500px;
+    justify-content: center;
+  }
+
+  .dummy-film {
+    background-color: #ccc;
+    width: 100%;
+    height: 500px;
+  }
+}

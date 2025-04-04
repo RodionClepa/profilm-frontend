@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@use "variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark light;
+  background-color: $bg-color;
+  color: $text-color;
+  transition: background-color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms,
+    color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
+  transition-delay: 0 !important;
+}

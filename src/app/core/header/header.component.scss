@@ -1,0 +1,27 @@
+@use "variables" as *;
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  top: 0;
+  position: sticky;
+  background-color: $bg-color;
+  z-index: 10;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: $max-content-width;
+  border: 1px solid $border-color;
+  padding: $padding-md;
+  a {
+    text-decoration: none;
+    color: $text-color;
+  }
+
+  nav {
+    display: flex;
+    gap: $gap-xs;
+  }
+}

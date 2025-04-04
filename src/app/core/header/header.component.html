@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <header>
+    <div class="logo-container">
+      <a [routerLink]="['/']">Profilm</a>
+    </div>
+    <nav>
+      <a [routerLink]="['/']">Movies</a>
+      <a [routerLink]="['/']">TV series</a>
+    </nav>
+    <a [routerLink]="['/']">Profile</a>
+    <div class="theme-toggle">
+      <label for="theme-select">Theme:</label>
+      <select
+        id="theme-select"
+        [value]="currentTheme"
+        (change)="onThemeChange($event)"
+        aria-label="Select theme"
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="system">System</option>
+      </select>
+    </div>
+  </header>
+</div>
