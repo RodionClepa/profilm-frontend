@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,25 @@ export class ErrorApiHandlerService {
  * @param operation - name of the operation that failed
  * @param result - optional value to return as the observable result
  */
-  public handleError<T>(operation = 'operation', result?: T) {
+  public handleError<T>(operation = 'operation') {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      console.log(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+      console.error(`${operation} failed:`, error);
+      let userMessage = 'An unexpected error occurred';
+      if (error.status === 401) {
+        userMessage = 'Authentication error. Please log in again.';
+      } else if (error.status === 404) {
+        userMessage = 'The requested resource was not found.';
+      } else if (error.status >= 500) {
+        userMessage = 'Server error. Please try again later.';
+      } else if (error.error && error.error.message) {
+        userMessage = error.error.message;
+      } else if (error.message) {
+        userMessage = error.message;
+      }
+
+      error.userMessage = userMessage;
+
+      return throwError(() => error);
     };
   }
 }

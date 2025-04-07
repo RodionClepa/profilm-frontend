@@ -12,8 +12,8 @@ export class FilmMediaService {
 
   constructor(private http: HttpClient, private apiService: ApiService, private errorHandler: ErrorApiHandlerService) { }
 
-  moviePopular(adult: boolean = false): Observable<MovieResponse> {
-    return this.http.get<MovieResponse>(this.apiService.popularMovies())
+  moviePopular(page: number = 0, adult: boolean = false): Observable<MovieResponse> {
+    return this.http.get<MovieResponse>(`${this.apiService.popularMovies()}?page=${page}&adult=${adult}`)
       .pipe(
         catchError(this.errorHandler.handleError<MovieResponse>('moviePopular'))
       );

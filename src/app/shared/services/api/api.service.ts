@@ -17,6 +17,6 @@ export class ApiService {
   }
 
   public popularMovies(): string {
-    return `${this.movies()}/popular?page=501`;
+    return `${this.movies()}/popular`;
   }
 }
