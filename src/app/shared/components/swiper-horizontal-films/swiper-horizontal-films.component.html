@@ -1,0 +1,47 @@
+@defer {
+<swiper-container
+  navigation="true"
+  space-between="30"
+  slides-per-view="1"
+  slides-per-group="1"
+  mousewheel="true"
+  free-mode="true"
+  scrollbar="true"
+  scrollbar-draggable="true"
+  breakpoints='{
+      "320":{
+        "slidesPerView":2,
+        "spaceBetween":10,
+        "slidesPerGroup":2
+      },
+      "480":{
+        "slidesPerView":3,
+        "spaceBetween":20,
+        "slidesPerGroup":3
+      },
+      "768":{
+        "slidesPerView":4,
+        "spaceBetween":20,
+        "slidesPerGroup":4
+      },
+      "1024":{
+        "slidesPerView":6,
+        "spaceBetween":20,
+        "slidesPerGroup":6
+      }
+    }'
+>
+  @for(film of filmList(); track film.id) {
+  <swiper-slide>
+    <!-- TODO add redirect -->
+    <a class="slide-card">
+      <img [src]="film.posterPath" [alt]="film.title + ' poster'" />
+      <div class="content-film">
+        <p class="title" [title]="film.title">{{ film.title }}</p>
+        <p class="date">{{ film.releaseDate | date : "MMM d, y" }}</p>
+      </div>
+    </a>
+  </swiper-slide>
+  }
+</swiper-container>
+}

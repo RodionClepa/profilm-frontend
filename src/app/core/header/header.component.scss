@@ -5,23 +5,55 @@
   justify-content: space-around;
   top: 0;
   position: sticky;
-  background-color: $bg-color;
   z-index: 10;
+  background-color: $bg-color;
+  border-bottom: 1px solid $border-color;
 }
 
 header {
   display: flex;
-  justify-content: space-between;
   width: $max-content-width;
-  border: 1px solid $border-color;
-  padding: $padding-md;
-  a {
-    text-decoration: none;
-    color: $text-color;
+
+  .logo-container {
+    flex: 1;
   }
 
-  nav {
-    display: flex;
-    gap: $gap-xs;
+  .navigation-wrapper {
+    display: inline-flex;
+    font-size: $font-size-md;
+    text-transform: uppercase;
+
+    .theme-toggle {
+      border-left: 1px solid $border-color;
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin: 10px;
+      }
+      .sun {
+        fill: $white;
+      }
+      .moon {
+        fill: #2c3e50;
+      }
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+      }
+    }
+
+    nav {
+      display: inline-flex;
+    }
+
+    a {
+      text-decoration: none;
+      color: $text-color;
+      padding: $padding-md;
+      border-left: 1px solid $border-color;
+    }
   }
 }

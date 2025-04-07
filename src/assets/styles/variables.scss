@@ -19,29 +19,69 @@ $padding-xl: 32px;
 $padding-xxl: 40px;
 $padding-xxxl: 48px;
 
+// Font-size variables
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+$font-size-xxxl: 40px;
+
+// Padding variables
+$padding-xs: 4px;
+$padding-sm: 8px;
+$padding-md: 12px;
+$padding-lg: 16px;
+$padding-xl: 24px;
+$padding-xxl: 32px;
+$padding-xxxl: 40px;
+
+// Font-weight variables
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+// Colors
+$red: #f12f46;
+$white: #fcf5ed;
+
 // Light Theme Colors
-$background-light: #fcf5ed;
-$text-primary-light: #1f1717;
-$text-secondary-light: #ce5a67;
-$border-light: #f4bf96;
+$background-light: #f1efe2;
+$text-primary-light: #353535;
+$text-secondary-light: #0d5853;
+$pink-light: #f063a4;
+$orange-light: #f89e4f;
+$border-light: #666;
 
 // Dark Theme Colors
-$background-dark: #1f1717;
-$text-primary-dark: #fcf5ed;
-$text-secondary-dark: #f4bf96;
-$border-dark: #ce5a67;
+$background-dark: #353535;
+$text-primary-dark: #d5d5d5;
+$text-secondary-dark: #a7963c;
+$pink-dark: #e6005c;
+$orange-dark: #d97f26;
+$border-dark: #b3b3b3;
 
 // Theme mixins
 @mixin light-theme {
   --bgColor: #{$background-light};
   --textColor: #{$text-primary-light};
+  --textSecColor: #{$text-secondary-light};
   --borderColor: #{$border-light};
+  --pink: #{$pink-light};
+  --orange: #{$orange-light};
 }
 
 @mixin dark-theme {
   --bgColor: #{$background-dark};
   --textColor: #{$text-primary-dark};
+  --textSecColor: #{$text-secondary-dark};
   --borderColor: #{$border-dark};
+  --pink: #{$pink-dark};
+  --orange: #{$pink-dark};
 }
 
 :root {
@@ -64,4 +104,7 @@ $border-dark: #ce5a67;
 
 $bg-color: var(--bgColor);
 $text-color: var(--textColor);
+$text-sec-color: var(--textSecColor);
 $border-color: var(--borderColor);
+$pink: var(--pink);
+$orange: var(--orange);

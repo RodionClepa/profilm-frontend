@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+.category-title {
+  font-size: $font-size-xxxl;
+  margin-bottom: 12px;
+
+  &.pink {
+    color: $pink;
+  }
+}
