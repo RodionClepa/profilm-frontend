@@ -31,6 +31,7 @@ export class ThemeService {
 
       if (savedTheme && Object.values(Theme).includes(savedTheme)) {
         this.themeSubject.next(savedTheme);
+        this.themeColor.next(savedTheme);
         this.applyTheme(savedTheme);
       } else {
         this.applyTheme(this.defaultTheme);
