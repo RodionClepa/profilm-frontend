@@ -16,7 +16,15 @@ export class ApiService {
     return `${this.api()}/movies`
   }
 
+  private tv(): string {
+    return `${this.api()}/tv`
+  }
+
   public popularMovies(): string {
     return `${this.movies()}/popular`;
+  }
+
+  public popularTV(): string {
+    return `${this.tv()}/popular`;
   }
 }

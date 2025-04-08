@@ -38,7 +38,7 @@
       <img [src]="film.posterPath" [alt]="film.title + ' poster'" />
       <div class="content-film">
         <p class="title" [title]="film.title">{{ film.title }}</p>
-        <p class="date">{{ film.releaseDate | date : "MMM d, y" }}</p>
+        <p class="date">{{ film.subTitle | date : "MMM d, y" }}</p>
       </div>
     </a>
   </swiper-slide>

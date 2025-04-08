@@ -1,4 +1,15 @@
-<h2 class="category-title pink">Most Popular Movies</h2>
-<app-swiper-horizontal-films
-  [filmList]="popularMovies"
-></app-swiper-horizontal-films>
+<main>
+  <section>
+    <h2 class="category-title pink">Popular Movies</h2>
+    <app-swiper-horizontal-films
+      [filmList]="popularMovies"
+    ></app-swiper-horizontal-films>
+  </section>
+
+  <section>
+    <h2 class="category-title orange">Popular TV Series</h2>
+    <app-swiper-horizontal-films
+      [filmList]="popularTV"
+    ></app-swiper-horizontal-films>
+  </section>
+</main>

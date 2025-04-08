@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
-import { Movie, MovieResponse } from '../../shared/types/MovieTv.type';
-import { SwiperHorizontalFilmsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-films.component";
+import { MovieResponse, TVResponse } from '../../shared/types/MovieTv.type';
+import { SwiperCard, SwiperHorizontalFilmsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-films.component";
+import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
 
 @Component({
   selector: 'app-landing',
@@ -11,14 +12,24 @@ import { SwiperHorizontalFilmsComponent } from "../../shared/components/swiper-h
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private filmMediaService: FilmMediaService) { }
+  constructor(private filmMediaService: FilmMediaService, private filmMediaMapper: FilmMediaMapperService) { }
 
-  popularMovies: Movie[] = [];
+  popularMovies: SwiperCard[] = [];
+  popularTV: SwiperCard[] = [];
 
   ngOnInit() {
     this.filmMediaService.moviePopular().subscribe({
       next: (response: MovieResponse) => {
-        this.popularMovies = response.results;
+        this.popularMovies = response.results.map((movie) => this.filmMediaMapper.movieToSwipperCard(movie));
+      },
+      error: (error) => {
+        console.error(error.message)
+      }
+    });
+
+    this.filmMediaService.tvPopular().subscribe({
+      next: (response: TVResponse) => {
+        this.popularTV = response.results.map((tv) => this.filmMediaMapper.tvToSwipperCard(tv));;
       },
       error: (error) => {
         console.error(error.message)
