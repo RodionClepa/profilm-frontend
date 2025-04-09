@@ -1,5 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, PLATFORM_ID } from '@angular/core';
-import { DatePipe, DOCUMENT, isPlatformServer } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 export interface SwiperCard {
   id: number;
@@ -17,9 +17,8 @@ export interface SwiperCard {
 })
 export class SwiperHorizontalFilmsComponent {
   filmList = input<SwiperCard[]>([]);
-  private document = inject(DOCUMENT);
-  private platformId = inject(PLATFORM_ID);
 
+  maxSlides = 7;
   breakpoints = {
     320: { slidesPerView: 2, spaceBetween: 10, slidesPerGroup: 2 },
     480: { slidesPerView: 3, spaceBetween: 20, slidesPerGroup: 3 },

@@ -85,7 +85,7 @@ $border-dark: #b3b3b3;
 }
 
 :root {
-  @include light-theme;
+  @include dark-theme;
 }
 
 @media (prefers-color-scheme: dark) {
