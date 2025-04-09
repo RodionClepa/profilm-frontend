@@ -35,4 +35,8 @@ export class ApiService {
   public trendingTVs(): string {
     return `${this.tv()}/trending`;
   }
+
+  public upcomingMovies(): string {
+    return `${this.movies()}/upcoming`;
+  }
 }

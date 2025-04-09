@@ -43,7 +43,7 @@ export class FilmMediaService {
     params = params.append('timeWindow', timeWindow);
     return this.http.get<MovieResponse>(this.apiService.trendingMovies(), { params })
       .pipe(
-        catchError(this.errorHandler.handleError<MovieResponse>('tvPopular'))
+        catchError(this.errorHandler.handleError<MovieResponse>('movieTrending'))
       );
   }
 
@@ -52,7 +52,15 @@ export class FilmMediaService {
     params = params.append('timeWindow', timeWindow);
     return this.http.get<TVResponse>(this.apiService.trendingTVs(), { params })
       .pipe(
-        catchError(this.errorHandler.handleError<TVResponse>('tvPopular'))
+        catchError(this.errorHandler.handleError<TVResponse>('tvTrending'))
+      );
+  }
+
+  movieUpcoming({ page = 1, adult = false, imageSize = posterSize.extraLarge }: { page?: number, adult?: boolean, imageSize?: number }): Observable<MovieResponse> {
+    let params = this.buildFilmPopularParams(page, adult, imageSize);
+    return this.http.get<MovieResponse>(this.apiService.upcomingMovies(), { params })
+      .pipe(
+        catchError(this.errorHandler.handleError<MovieResponse>('movieUpcoming'))
       );
   }
 }

@@ -19,7 +19,7 @@ export class SwiperHorizontalFilmsComponent {
 
   scrollbarColor = input<string>("var(--red)");
   navigationColor = input<string>("var(--red)");
-  filmList = input<SwiperCard[]>([]);
+  cardList = input<SwiperCard[]>([]);
 
   skeletonCards = [1, 2, 3, 4, 5, 6];
 

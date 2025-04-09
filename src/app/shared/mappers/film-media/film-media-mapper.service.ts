@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Movie, TV } from '../../types/MovieTv.type';
 import { formatDate } from '@angular/common';
 import { SwiperCard } from '../../components/swiper-horizontal-films/swiper-horizontal-films.component';
+import { PromoCard } from '../../../features/landing/promo-slider/promo-slider.component';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,16 @@ export class FilmMediaMapperService {
       id: movie.id,
       title: movie.name,
       subTitle: formattedReleaseDate || '',
+      posterPath: movie.posterPath
+    }
+  }
+
+  public movieToPromoCard(movie: Movie): PromoCard {
+    return {
+      id: movie.id,
+      title: movie.title,
+      releaseDate: movie.releaseDate,
+      overview: movie.overview,
       posterPath: movie.posterPath
     }
   }

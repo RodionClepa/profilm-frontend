@@ -14,14 +14,14 @@
     '--swiper-navigation-color': navigationColor()
   }"
 >
-  @for(film of filmList(); track film.id) {
+  @for(card of cardList(); track card.id) {
   <swiper-slide>
     <!-- TODO add redirect -->
     <a class="slide-card">
-      <img [src]="film.posterPath" [alt]="film.title + ' poster'" />
+      <img [src]="card.posterPath" [alt]="card.title + ' poster'" />
       <div class="content-film">
-        <p class="title" [title]="film.title">{{ film.title }}</p>
-        <p class="date">{{ film.subTitle | date : "MMM d, y" }}</p>
+        <p class="title" [title]="card.title">{{ card.title }}</p>
+        <p class="date">{{ card.subTitle | date : "MMM d, y" }}</p>
       </div>
     </a>
   </swiper-slide>
