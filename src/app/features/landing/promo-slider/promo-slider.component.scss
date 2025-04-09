@@ -1,0 +1,54 @@
+@use "variables" as *;
+
+swiper-container {
+  width: 100%;
+  height: 513px;
+
+  swiper-slide {
+    width: 300px;
+  }
+
+  --swiper-pagination-bottom: 0px;
+}
+
+.film-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  height: 100%;
+}
+
+.film-poster {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: $padding-lg $padding-md;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  box-sizing: border-box;
+
+  .title {
+    color: $blue;
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+  }
+
+  .release-date {
+    color: $orange;
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+  }
+
+  .overview {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+  }
+}

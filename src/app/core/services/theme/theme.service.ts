@@ -2,17 +2,24 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export type Theme = 'light' | 'dark' | 'system';
+export enum Theme {
+  LIGHT = 'light',
+  DARK = 'dark',
+  SYSTEM = 'system'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
   private storageKey = 'theme-preference';
-  private defaultTheme: Theme = 'system';
+  private defaultTheme: Theme = Theme.SYSTEM;
+  private defaultColorTheme: Theme = Theme.DARK;
   private themeSubject = new BehaviorSubject<Theme>(this.defaultTheme);
+  private themeColor = new BehaviorSubject<Theme>(this.defaultColorTheme);
 
   theme$ = this.themeSubject.asObservable();
+  themeColor$ = this.themeColor.asObservable();
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.initTheme();
@@ -20,14 +27,18 @@ export class ThemeService {
 
   private initTheme(): void {
     if (isPlatformBrowser(this.platformId)) {
+      console.log('initTheme')
       const savedTheme = localStorage.getItem(this.storageKey) as Theme;
 
-      if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
+      if (savedTheme && Object.values(Theme).includes(savedTheme)) {
         this.themeSubject.next(savedTheme);
+        this.themeColor.next(savedTheme);
         this.applyTheme(savedTheme);
       } else {
         this.applyTheme(this.defaultTheme);
       }
+
+      this.handleSystemThemeChanges();
     }
   }
 
@@ -35,6 +46,7 @@ export class ThemeService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.storageKey, theme);
       this.themeSubject.next(theme);
+      this.themeColor.next(theme);
       this.applyTheme(theme);
     }
   }
@@ -45,19 +57,34 @@ export class ThemeService {
 
   private applyTheme(theme: Theme): void {
     if (!isPlatformBrowser(this.platformId)) return;
-
     const html = document.documentElement;
 
-    // Remove any existing theme classes
     html.classList.remove('light-theme', 'dark-theme');
 
-    if (theme === 'system') {
-      // Let the media query handle it
-      html.removeAttribute('data-theme');
+    if (theme === Theme.SYSTEM) {
+      this.applySystemTheme();
+      html.setAttribute('data-theme', 'system');
     } else {
-      // Apply the specific theme
       html.setAttribute('data-theme', theme);
+      html.classList.add(`${theme}-theme`);
     }
   }
 
+  private applySystemTheme(): void {
+    const html = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    html.classList.remove('light-theme', 'dark-theme');
+    html.classList.add(prefersDark ? 'dark-theme' : 'light-theme');
+    this.themeColor.next(prefersDark ? Theme.DARK : Theme.LIGHT);
+  }
+
+  private handleSystemThemeChanges(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', () => {
+      if (this.themeSubject.value === Theme.SYSTEM) {
+        this.applySystemTheme();
+      }
+    });
+  }
 }

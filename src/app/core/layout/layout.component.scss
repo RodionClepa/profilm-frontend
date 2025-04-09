@@ -3,11 +3,21 @@
 .page-layout {
   display: flex;
   justify-content: space-around;
+  max-width: $max-content-width;
+  margin: 0 auto;
 }
 
 .container {
-  max-width: $max-content-width;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 $padding-xxl;
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: $padding-md;
+  }
 }

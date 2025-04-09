@@ -1,0 +1,42 @@
+@defer {
+<swiper-container
+  navigation="true"
+  space-between="30"
+  slides-per-view="1"
+  slides-per-group="1"
+  mousewheel="true"
+  free-mode="true"
+  scrollbar="true"
+  scrollbar-draggable="true"
+  [breakpoints]="breakpoints"
+  [style]="{
+    '--swiper-scrollbar-drag-bg-color': scrollbarColor(),
+    '--swiper-navigation-color': navigationColor()
+  }"
+>
+  @for(card of cardList(); track card.id) {
+  <swiper-slide>
+    <!-- TODO add redirect -->
+    <a class="slide-card">
+      <img [src]="card.posterPath" [alt]="card.title + ' poster'" />
+      <div class="content-film">
+        <p class="title" [title]="card.title">{{ card.title }}</p>
+        <p class="date">{{ card.subTitle | date : "MMM d, y" }}</p>
+      </div>
+    </a>
+  </swiper-slide>
+  }
+</swiper-container>
+} @placeholder {
+<div class="placeholder skeleton-container">
+  @for (i of skeletonCards; track i) {
+  <div class="slide-card skeleton">
+    <div class="skeleton-image"></div>
+    <div class="content-film">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-date"></div>
+    </div>
+  </div>
+  }
+</div>
+}
