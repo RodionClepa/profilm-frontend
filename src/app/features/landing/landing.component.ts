@@ -18,21 +18,15 @@ export class LandingComponent implements OnInit {
   popularTV: SwiperCard[] = [];
 
   ngOnInit() {
-    this.filmMediaService.moviePopular().subscribe({
+    this.filmMediaService.moviePopular({}).subscribe({
       next: (response: MovieResponse) => {
         this.popularMovies = response.results.map((movie) => this.filmMediaMapper.movieToSwipperCard(movie));
-      },
-      error: (error) => {
-        console.error(error.message)
       }
     });
 
-    this.filmMediaService.tvPopular().subscribe({
+    this.filmMediaService.tvPopular({}).subscribe({
       next: (response: TVResponse) => {
         this.popularTV = response.results.map((tv) => this.filmMediaMapper.tvToSwipperCard(tv));;
-      },
-      error: (error) => {
-        console.error(error.message)
       }
     });
   }

@@ -8,28 +8,7 @@
   free-mode="true"
   scrollbar="true"
   scrollbar-draggable="true"
-  breakpoints='{
-      "320":{
-        "slidesPerView":2,
-        "spaceBetween":10,
-        "slidesPerGroup":2
-      },
-      "480":{
-        "slidesPerView":3,
-        "spaceBetween":20,
-        "slidesPerGroup":3
-      },
-      "768":{
-        "slidesPerView":4,
-        "spaceBetween":20,
-        "slidesPerGroup":4
-      },
-      "1024":{
-        "slidesPerView":6,
-        "spaceBetween":20,
-        "slidesPerGroup":6
-      }
-    }'
+  [breakpoints]="breakpoints"
 >
   @for(film of filmList(); track film.id) {
   <swiper-slide>
@@ -44,4 +23,16 @@
   </swiper-slide>
   }
 </swiper-container>
+} @placeholder {
+<div class="swiper-placeholder">
+  @for(film of filmList().slice(0, 4); track film.id) {
+  <div class="placeholder-item">
+    <img [src]="film.posterPath" [alt]="film.title + ' poster'" />
+    <div class="content-film">
+      <p class="title">{{ film.title }}</p>
+      <p class="date">{{ film.subTitle | date : "MMM d, y" }}</p>
+    </div>
+  </div>
+  }
+</div>
 }

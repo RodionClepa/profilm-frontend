@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { ErrorApiHandlerService } from '../error-api-handler/error-api-handler.service';
 import { MovieResponse, TVResponse } from '../../types/MovieTv.type';
@@ -13,15 +13,25 @@ export class FilmMediaService {
 
   constructor(private http: HttpClient, private apiService: ApiService, private errorHandler: ErrorApiHandlerService) { }
 
-  moviePopular(): Observable<MovieResponse> {
-    return this.http.get<MovieResponse>(`${this.apiService.popularMovies()}?imageSize=${posterSize.Large}`)
+  private buildFilmPopularParams(page: number, adult: boolean, imageSize: number): HttpParams {
+    return new HttpParams()
+      .set('page', page.toString())
+      .set('adult', adult.toString())
+      .set('imageSize', imageSize.toString());
+  }
+
+  moviePopular({ page = 1, adult = false, imageSize = posterSize.Large }: { page?: number, adult?: boolean, imageSize?: number }): Observable<MovieResponse> {
+    const params = this.buildFilmPopularParams(page, adult, imageSize);
+
+    return this.http.get<MovieResponse>(this.apiService.popularMovies(), { params })
       .pipe(
         catchError(this.errorHandler.handleError<MovieResponse>('moviePopular'))
       );
   }
 
-  tvPopular(): Observable<TVResponse> {
-    return this.http.get<TVResponse>(`${this.apiService.popularTV()}?imageSize=${posterSize.Large}`)
+  tvPopular({ page = 1, adult = false, imageSize = posterSize.Large }: { page?: number, adult?: boolean, imageSize?: number }): Observable<TVResponse> {
+    const params = this.buildFilmPopularParams(page, adult, imageSize);
+    return this.http.get<TVResponse>(this.apiService.popularTV(), { params })
       .pipe(
         catchError(this.errorHandler.handleError<TVResponse>('tvPopular'))
       );
