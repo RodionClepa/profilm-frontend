@@ -21,7 +21,6 @@ export class HeaderComponent {
   }
 
   onThemeChange(colorTheme: Theme): void {
-    console.log(colorTheme)
     this.themeService.setTheme(colorTheme);
   }
 }

@@ -14,7 +14,7 @@ export enum Theme {
 export class ThemeService {
   private storageKey = 'theme-preference';
   private defaultTheme: Theme = Theme.SYSTEM;
-  private defaultColorTheme: Theme = Theme.LIGHT;
+  private defaultColorTheme: Theme = Theme.DARK;
   private themeSubject = new BehaviorSubject<Theme>(this.defaultTheme);
   private themeColor = new BehaviorSubject<Theme>(this.defaultColorTheme);
 
@@ -27,6 +27,7 @@ export class ThemeService {
 
   private initTheme(): void {
     if (isPlatformBrowser(this.platformId)) {
+      console.log('initTheme')
       const savedTheme = localStorage.getItem(this.storageKey) as Theme;
 
       if (savedTheme && Object.values(Theme).includes(savedTheme)) {
@@ -56,7 +57,6 @@ export class ThemeService {
 
   private applyTheme(theme: Theme): void {
     if (!isPlatformBrowser(this.platformId)) return;
-
     const html = document.documentElement;
 
     html.classList.remove('light-theme', 'dark-theme');
@@ -80,7 +80,6 @@ export class ThemeService {
 
   private handleSystemThemeChanges(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', () => {
       if (this.themeSubject.value === Theme.SYSTEM) {

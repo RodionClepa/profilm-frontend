@@ -7,7 +7,7 @@ main {
 }
 
 .category-title {
-  font-size: $font-size-xxxl;
+  font-size: $font-size-xxl;
   margin-bottom: 12px;
 
   &.pink {
@@ -16,5 +16,19 @@ main {
 
   &.orange {
     color: $orange;
+  }
+
+  &.red {
+    color: $red;
+  }
+
+  &.blue {
+    color: $blue;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .category-title {
+    font-size: $font-size-lg;
   }
 }

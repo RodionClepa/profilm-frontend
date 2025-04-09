@@ -5,6 +5,7 @@ import { catchError, Observable } from 'rxjs';
 import { ErrorApiHandlerService } from '../error-api-handler/error-api-handler.service';
 import { MovieResponse, TVResponse } from '../../types/MovieTv.type';
 import { posterSize } from '../../constants/image-sizes.constants';
+import { TimeWindow } from '../../constants/movieApi.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,24 @@ export class FilmMediaService {
   tvPopular({ page = 1, adult = false, imageSize = posterSize.Large }: { page?: number, adult?: boolean, imageSize?: number }): Observable<TVResponse> {
     const params = this.buildFilmPopularParams(page, adult, imageSize);
     return this.http.get<TVResponse>(this.apiService.popularTV(), { params })
+      .pipe(
+        catchError(this.errorHandler.handleError<TVResponse>('tvPopular'))
+      );
+  }
+
+  movieTrending({ page = 1, adult = false, imageSize = posterSize.Large, timeWindow = TimeWindow.WEEK }: { page?: number, adult?: boolean, imageSize?: number, timeWindow?: TimeWindow }): Observable<MovieResponse> {
+    let params = this.buildFilmPopularParams(page, adult, imageSize);
+    params = params.append('timeWindow', timeWindow);
+    return this.http.get<MovieResponse>(this.apiService.trendingMovies(), { params })
+      .pipe(
+        catchError(this.errorHandler.handleError<MovieResponse>('tvPopular'))
+      );
+  }
+
+  tvTrending({ page = 1, adult = false, imageSize = posterSize.Large, timeWindow = TimeWindow.WEEK }: { page?: number, adult?: boolean, imageSize?: number, timeWindow?: TimeWindow }): Observable<TVResponse> {
+    let params = this.buildFilmPopularParams(page, adult, imageSize);
+    params = params.append('timeWindow', timeWindow);
+    return this.http.get<TVResponse>(this.apiService.trendingTVs(), { params })
       .pipe(
         catchError(this.errorHandler.handleError<TVResponse>('tvPopular'))
       );

@@ -27,4 +27,12 @@ export class ApiService {
   public popularTV(): string {
     return `${this.tv()}/popular`;
   }
+
+  public trendingMovies(): string {
+    return `${this.movies()}/trending`;
+  }
+
+  public trendingTVs(): string {
+    return `${this.tv()}/trending`;
+  }
 }

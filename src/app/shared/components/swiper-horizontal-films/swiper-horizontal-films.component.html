@@ -9,6 +9,10 @@
   scrollbar="true"
   scrollbar-draggable="true"
   [breakpoints]="breakpoints"
+  [style]="{
+    '--swiper-scrollbar-drag-bg-color': scrollbarColor(),
+    '--swiper-navigation-color': navigationColor()
+  }"
 >
   @for(film of filmList(); track film.id) {
   <swiper-slide>
@@ -25,7 +29,7 @@
 </swiper-container>
 } @placeholder {
 <div class="placeholder skeleton-container">
-  @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+  @for (i of skeletonCards; track i) {
   <div class="slide-card skeleton">
     <div class="skeleton-image"></div>
     <div class="content-film">

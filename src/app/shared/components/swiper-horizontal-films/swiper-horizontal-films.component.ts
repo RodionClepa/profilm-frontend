@@ -16,9 +16,13 @@ export interface SwiperCard {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SwiperHorizontalFilmsComponent {
+
+  scrollbarColor = input<string>("var(--red)");
+  navigationColor = input<string>("var(--red)");
   filmList = input<SwiperCard[]>([]);
 
-  maxSlides = 7;
+  skeletonCards = [1, 2, 3, 4, 5, 6];
+
   breakpoints = {
     320: { slidesPerView: 2, spaceBetween: 10, slidesPerGroup: 2 },
     480: { slidesPerView: 3, spaceBetween: 20, slidesPerGroup: 3 },

@@ -14,6 +14,12 @@ html {
   transition-delay: 0 !important;
 }
 
+.bg-color-transition {
+  transition: background-color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms,
+    color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
+  transition-delay: 0 !important;
+}
+
 body {
   // font-family: "Space Mono", monospace;
   font-family: "IBM Plex Mono", monospace;
@@ -28,7 +34,7 @@ body {
   .skeleton-image,
   .skeleton-title,
   .skeleton-date {
-    background: #e0e0e0;
+    background: $skeleton-color;
     position: relative;
     overflow: hidden;
 
