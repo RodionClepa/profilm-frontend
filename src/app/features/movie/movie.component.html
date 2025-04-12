@@ -1,0 +1,58 @@
+@if(movie) {
+<main>
+  <div class="movie-container bg-color-transition">
+    <div class="movie-poster">
+      <img [src]="movie.poster" [alt]="movie.title + ' poster'" />
+    </div>
+    <div class="movie-info">
+      <h2>{{ movie.title }}</h2>
+      <p class="release-date">{{ movie.releaseDate | date : "MMM d, y" }}</p>
+      <ul class="genres">
+        @for (genre of movie.genres; track genre.id) {
+        <li>{{ genre.name }}</li>
+        }
+      </ul>
+      <p class="runtime">Runtime: {{ formatRuntime(movie.runtime) }}</p>
+      <p class="budget">
+        Budget: {{ movie.budget | currency : "USD" : "symbol" }}
+      </p>
+      <p class="revenue">
+        Revenue: {{ movie.revenue | currency : "USD" : "symbol" }}
+      </p>
+      <p class="tagline" *ngIf="movie.tagline">“{{ movie.tagline }}”</p>
+      <p class="overview">{{ movie.overview }}</p>
+      <div class="ratings">
+        <div class="numbers">
+          <p>⭐ Rating: {{ movie.voteAverage | number : "1.1-1" }}/10</p>
+          <p>🗳️ Votes: {{ movie.voteCount | number }}</p>
+        </div>
+        <app-rating-bar [rating]="movie.voteAverage * 10"></app-rating-bar>
+      </div>
+      <p class="adult" [ngClass]="{ 'adult-true': movie.adult }">
+        {{ movie.adult ? "Adult Content" : "General Audience" }}
+      </p>
+    </div>
+  </div>
+</main>
+<section class="tabs">
+  <nav role="tablist">
+    <ul class="tab-links">
+      <li>
+        <button role="tab" aria-selected="false">Watch</button>
+      </li>
+      <li><button role="tab" aria-selected="false">Trailer</button></li>
+      <li><button role="tab" aria-selected="false">Crew</button></li>
+      <li>
+        <button role="tab" aria-selected="false">Extras (Gallery)</button>
+      </li>
+      <li><button role="tab" aria-selected="false">Review</button></li>
+    </ul>
+  </nav>
+  <div>SOME content</div>
+</section>
+} @else {
+<div class="loading-retro">
+  <app-loader></app-loader>
+  <p>Loading movie details...</p>
+</div>
+}

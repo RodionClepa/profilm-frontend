@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie, TV } from '../../types/MovieTv.type';
+import { Movie, TV } from '../../types/movie-tv.type';
 import { formatDate } from '@angular/common';
 import { SwiperCard } from '../../components/swiper-horizontal-films/swiper-horizontal-films.component';
 import { PromoCard } from '../../../features/landing/promo-slider/promo-slider.component';

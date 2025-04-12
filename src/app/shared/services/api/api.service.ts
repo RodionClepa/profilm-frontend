@@ -39,4 +39,8 @@ export class ApiService {
   public upcomingMovies(): string {
     return `${this.movies()}/upcoming`;
   }
+
+  public movieById(id: number): string {
+    return `${this.api()}/movies/${id}`;
+  }
 }

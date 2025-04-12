@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
-import { MovieResponse, TVResponse } from '../../shared/types/MovieTv.type';
+import { MovieResponse, TVResponse } from '../../shared/types/movie-tv.type';
 import { SwiperCard, SwiperHorizontalFilmsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-films.component";
 import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
 import { TimeWindow } from '../../shared/constants/movieApi.constants';

@@ -16,7 +16,7 @@
   @for(film of filmList(); track film.id) {
   <swiper-slide>
     <a
-      [routerLink]="['/movie', film.id]"
+      [routerLink]="['/', pages.MOVIE, film.id]"
       [ngStyle]="{ 'background-image': 'url(' + film.posterPath + ')' }"
       class="film-link"
     >
