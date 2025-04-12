@@ -1,7 +1,7 @@
 <app-promo-slider [filmList]="upcomingMovies"></app-promo-slider>
 <main>
-  <section>
-    <h2 class="category-title pink">Popular Movies</h2>
+  <section class="pink-section bg-color-transition">
+    <h2>Popular Movies</h2>
     <app-swiper-horizontal-films
       [cardList]="popularMovies"
       [scrollbarColor]="'var(--pink)'"
@@ -9,8 +9,8 @@
     ></app-swiper-horizontal-films>
   </section>
 
-  <section>
-    <h2 class="category-title orange">Popular TV Series</h2>
+  <section class="orange-section bg-color-transition">
+    <h2>Popular TV Series</h2>
     <app-swiper-horizontal-films
       [cardList]="popularTV"
       [scrollbarColor]="'var(--orange)'"
@@ -18,8 +18,8 @@
     ></app-swiper-horizontal-films>
   </section>
 
-  <section>
-    <h2 class="category-title red">Trending Movies of the Week</h2>
+  <section class="red-section bg-color-transition">
+    <h2>Trending Movies of the Week</h2>
     <app-swiper-horizontal-films
       [cardList]="trendingMovies"
       [scrollbarColor]="'var(--red)'"
@@ -27,8 +27,8 @@
     ></app-swiper-horizontal-films>
   </section>
 
-  <section>
-    <h2 class="category-title blue">Trending TV Series of the Week</h2>
+  <section class="blue-section bg-color-transition">
+    <h2>Trending TV Series of the Week</h2>
     <app-swiper-horizontal-films
       [cardList]="trendingTVs"
       [scrollbarColor]="'var(--blue)'"
