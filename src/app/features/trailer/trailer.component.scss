@@ -1,0 +1,56 @@
+@use "variables" as *;
+
+.video-container {
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap-lg;
+  justify-content: center;
+
+  @media only screen and (max-width: 767px) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+.video-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  background: $black;
+  border: 4px solid $border-color;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.crt-screen {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.video-title {
+  color: $pink;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  padding: $padding-md;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, $pink-tint, transparent);
+}

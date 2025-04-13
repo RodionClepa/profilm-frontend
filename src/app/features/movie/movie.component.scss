@@ -3,12 +3,6 @@
 main {
   margin-top: 32px;
   .movie-container {
-    background: linear-gradient(
-      0deg,
-      transparent 0,
-      $pink-tint 70%,
-      $pink-tint 100%
-    );
     max-width: $max-content-width;
     margin: 0 auto;
     padding: $padding-lg;
@@ -139,31 +133,30 @@ main {
 section {
   margin-top: $gap-md;
   nav {
-    .tab-links {
-      list-style: none;
-      display: inline-flex;
+    display: flex;
+    overflow-x: auto;
+    button {
+      background: none;
+      padding: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: $text-color;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-regular;
+      text-transform: uppercase;
+      border: 1px solid $border-color;
 
-      li {
-        button {
-          background: none;
-          padding: 8px;
-          cursor: pointer;
-          text-decoration: none;
-          color: $text-color;
-          font-size: $font-size-lg;
-          font-weight: $font-weight-semi-bold;
-          text-transform: uppercase;
-          border: 1px solid gray;
+      &:hover {
+        background-color: $blue-tint;
+      }
 
-          &:hover {
-            color: $pink;
-          }
-        }
+      &.active {
+        background-color: $blue;
       }
     }
   }
-  div {
-    height: 100vh;
-    border: 1px solid red;
-  }
+}
+
+.place {
+  height: 300px;
 }

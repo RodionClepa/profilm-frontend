@@ -1,21 +1,38 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES_TOKENS } from '../../shared/constants/routes-token.constants';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
 import { MovieDetailsResponse } from '../../shared/types/movie-details.type';
 import { CommonModule, DatePipe } from '@angular/common';
 import { LoaderComponent } from "../../shared/components/loader/loader.component";
 import { RatingBarComponent } from "../../shared/components/rating-bar/rating-bar.component";
+import { FormatRuntimePipe } from "../../shared/pipes/format-runtime.pipe";
+import { PlayerComponent } from "../player/player.component";
+import { TrailerComponent } from "../trailer/trailer.component";
+
+const TAB_TOKEN = {
+  WATCH: 'watch',
+  EXTRAS: 'extras',
+  TRAILER: 'trailer',
+  CREW: 'crew',
+  REVIEW: 'review',
+} as const;
+
+type TabType = typeof TAB_TOKEN[keyof typeof TAB_TOKEN];
 
 @Component({
   selector: 'app-movie',
-  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent],
+  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })
 export class MovieComponent {
 
   movie: MovieDetailsResponse | null = null;
+  private readonly openTabKey: string = "tab";
+  openTab: string | null = null;
+  validTabs = Object.values(TAB_TOKEN);
+  readonly TAB_TOKEN = TAB_TOKEN;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +53,8 @@ export class MovieComponent {
     this.filmService.movieDetails(id).subscribe({
       next: (response: MovieDetailsResponse) => {
         this.movie = response;
+        const tab = this.route.snapshot.queryParams[this.openTabKey] as TabType | undefined;
+        this.openTab = tab && this.validTabs.includes(tab) ? tab : null;
       },
       error: (error) => {
         console.error('Failed to fetch movie:', error);
@@ -44,10 +63,14 @@ export class MovieComponent {
     });
   }
 
-  formatRuntime(minutes: number): string {
-    if (!minutes) return 'N/A';
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    return `${hours}h ${remainingMinutes}m`;
+  setActiveTab(tab: TabType) {
+    if (this.validTabs.includes(tab)) {
+      this.openTab = tab;
+      this.router.navigate([], {
+        queryParams: { [this.openTabKey]: tab },
+        queryParamsHandling: 'merge',
+        replaceUrl: true
+      });
+    }
   }
 }

@@ -30,6 +30,7 @@ export interface MovieVideo {
 }
 
 export interface MovieDetailsResponse {
+  id: number;
   title: string;
   adult: boolean;
   budget: number;

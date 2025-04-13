@@ -1,6 +1,6 @@
 @if(movie) {
 <main>
-  <div class="movie-container bg-color-transition">
+  <div class="movie-container bg-color-transition pink-tint-gradient">
     <div class="movie-poster">
       <img [src]="movie.poster" [alt]="movie.title + ' poster'" />
     </div>
@@ -12,7 +12,7 @@
         <li>{{ genre.name }}</li>
         }
       </ul>
-      <p class="runtime">Runtime: {{ formatRuntime(movie.runtime) }}</p>
+      <p class="runtime">Runtime: {{ movie.runtime | formatRuntime }}</p>
       <p class="budget">
         Budget: {{ movie.budget | currency : "USD" : "symbol" }}
       </p>
@@ -36,20 +36,52 @@
 </main>
 <section class="tabs">
   <nav role="tablist">
-    <ul class="tab-links">
-      <li>
-        <button role="tab" aria-selected="false">Watch</button>
-      </li>
-      <li><button role="tab" aria-selected="false">Trailer</button></li>
-      <li><button role="tab" aria-selected="false">Crew</button></li>
-      <li>
-        <button role="tab" aria-selected="false">Extras (Gallery)</button>
-      </li>
-      <li><button role="tab" aria-selected="false">Review</button></li>
-    </ul>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.WATCH)"
+      role="tab"
+      [class.active]="openTab === TAB_TOKEN.WATCH"
+    >
+      Watch
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.TRAILER)"
+      role="tab"
+      [class.active]="openTab === TAB_TOKEN.TRAILER"
+    >
+      Trailer
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.CREW)"
+      role="tab"
+      [class.active]="openTab === TAB_TOKEN.CREW"
+    >
+      Crew
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.EXTRAS)"
+      role="tab"
+      [class.active]="openTab === TAB_TOKEN.EXTRAS"
+    >
+      Extras (Gallery)
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.REVIEW)"
+      role="tab"
+      [class.active]="openTab === TAB_TOKEN.REVIEW"
+    >
+      Review
+    </button>
   </nav>
-  <div>SOME content</div>
+  <div>
+    @switch (openTab) { @case (TAB_TOKEN.WATCH) {
+    <app-player [filmId]="movie.id"></app-player>
+    } @case (TAB_TOKEN.TRAILER) {
+    <app-trailer [videos]="movie.videos"></app-trailer>
+    } }
+  </div>
 </section>
+
+<h2>end</h2>
 } @else {
 <div class="loading-retro">
   <app-loader></app-loader>

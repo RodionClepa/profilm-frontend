@@ -21,6 +21,15 @@ html {
   transition-delay: 0 !important;
 }
 
+.pink-tint-gradient {
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $pink-tint 70%,
+    $pink-tint 100%
+  );
+}
+
 body {
   // font-family: "Space Mono", monospace;
   font-family: "IBM Plex Mono", monospace;
