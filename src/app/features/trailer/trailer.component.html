@@ -1,10 +1,10 @@
 <div class="video-container">
-  @for(video of formattedVideos(); track video.id) {
+  @for(video of formattedVideos; track video.id) {
   <div class="video-card">
     <div class="crt-screen">
       <div class="video-wrapper">
         <iframe
-          [src]="video.link"
+          [src]="video.youtubeUrl"
           frameborder="0"
           allowfullscreen
           title="{{ video.name }}"
