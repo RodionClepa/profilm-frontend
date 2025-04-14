@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, ElementRef, Inject, input, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MovieImage } from '../../shared/types/movie-details.type';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { LoaderComponent } from "../../shared/components/loader/loader.component";
 
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'
 })
@@ -63,15 +62,5 @@ export class GalleryComponent implements OnInit, AfterViewInit {
         }
       }
     }
-  }
-
-  getRatingColor(rating: number): string {
-    if (rating >= 8) return 'high-rating';
-    if (rating >= 6) return 'medium-rating';
-    return 'low-rating';
-  }
-
-  getFormattedRating(rating: number): string {
-    return rating.toFixed(1);
   }
 }

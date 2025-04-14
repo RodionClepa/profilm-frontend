@@ -1,4 +1,4 @@
-@defer { @if(images() && images().length > 0) {
+@if(images() && images().length > 0) {
 <div class="retro-gallery-container">
   <div class="retro-gallery-header">
     <h2 class="retro-title">Movie Gallery</h2>
@@ -24,9 +24,15 @@
       <div class="image-info">
         <div
           class="rating-badge"
-          [ngClass]="getRatingColor(selectedImage.voteAverage)"
+          [ngClass]="
+            selectedImage.voteAverage >= 8
+              ? 'high-rating'
+              : selectedImage.voteAverage >= 6
+              ? 'medium-rating'
+              : 'low-rating'
+          "
         >
-          {{ getFormattedRating(selectedImage.voteAverage) }}
+          {{ selectedImage.voteAverage | number : "1.1-1" }}
         </div>
         <div class="vote-count">{{ selectedImage.voteCount }} votes</div>
       </div>
@@ -53,9 +59,15 @@
       />
       <div
         class="thumbnail-rating"
-        [ngClass]="getRatingColor(image.voteAverage)"
+        [ngClass]="
+          image.voteAverage >= 8
+            ? 'high-rating'
+            : image.voteAverage >= 6
+            ? 'medium-rating'
+            : 'low-rating'
+        "
       >
-        {{ getFormattedRating(image.voteAverage) }}
+        {{ image.voteAverage | number : "1.1-1" }}
       </div>
     </div>
     }
@@ -68,10 +80,5 @@
     <div class="retro-empty-icon">?</div>
     <p class="retro-empty-text">No images available</p>
   </div>
-</div>
-} } @placeholder {
-<div class="loading-retro">
-  <app-loader></app-loader>
-  <p>Loading Gallery...</p>
 </div>
 }
