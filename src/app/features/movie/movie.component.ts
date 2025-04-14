@@ -11,6 +11,7 @@ import { PlayerComponent } from "../player/player.component";
 import { TrailerComponent } from "../trailer/trailer.component";
 import { GalleryComponent } from "../gallery/gallery.component";
 import { CastComponent } from "../cast/cast.component";
+import { ReviewsComponent } from "../reviews/reviews.component";
 
 const TAB_TOKEN = {
   WATCH: 'watch',
@@ -24,7 +25,7 @@ type TabType = typeof TAB_TOKEN[keyof typeof TAB_TOKEN];
 
 @Component({
   selector: 'app-movie',
-  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent, CastComponent],
+  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent, CastComponent, ReviewsComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })

@@ -2,37 +2,37 @@
 <main>
   <section class="pink-section bg-color-transition">
     <h2>Popular Movies</h2>
-    <app-swiper-horizontal-films
+    <app-swiper-horizontal-cards
       [cardList]="popularMovies"
       [scrollbarColor]="'var(--pink)'"
       [navigationColor]="'var(--pink)'"
-    ></app-swiper-horizontal-films>
+    ></app-swiper-horizontal-cards>
   </section>
 
   <section class="orange-section bg-color-transition">
     <h2>Popular TV Series</h2>
-    <app-swiper-horizontal-films
+    <app-swiper-horizontal-cards
       [cardList]="popularTV"
       [scrollbarColor]="'var(--orange)'"
       [navigationColor]="'var(--orange)'"
-    ></app-swiper-horizontal-films>
+    ></app-swiper-horizontal-cards>
   </section>
 
   <section class="red-section bg-color-transition">
     <h2>Trending Movies of the Week</h2>
-    <app-swiper-horizontal-films
+    <app-swiper-horizontal-cards
       [cardList]="trendingMovies"
       [scrollbarColor]="'var(--red)'"
       [navigationColor]="'var(--red)'"
-    ></app-swiper-horizontal-films>
+    ></app-swiper-horizontal-cards>
   </section>
 
   <section class="blue-section bg-color-transition">
     <h2>Trending TV Series of the Week</h2>
-    <app-swiper-horizontal-films
+    <app-swiper-horizontal-cards
       [cardList]="trendingTVs"
       [scrollbarColor]="'var(--blue)'"
       [navigationColor]="'var(--blue)'"
-    ></app-swiper-horizontal-films>
+    ></app-swiper-horizontal-cards>
   </section>
 </main>

@@ -82,6 +82,8 @@
     <app-gallery [images]="movie.images"></app-gallery>
     } @case (TAB_TOKEN.CAST) {
     <app-cast [cast]="movie.cast"></app-cast>
+    } @case(TAB_TOKEN.REVIEW) {
+    <app-reviews [reviews]="movie.reviews.results"></app-reviews>
     } }
   </div>
   } @placeholder {

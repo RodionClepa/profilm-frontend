@@ -1,20 +1,22 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface SwiperCard {
   id: number;
   title: string;
   subTitle: string;
   posterPath: string;
+  link: string;
 }
 
 @Component({
-  selector: 'app-swiper-horizontal-films',
-  imports: [],
-  templateUrl: './swiper-horizontal-films.component.html',
-  styleUrl: './swiper-horizontal-films.component.scss',
+  selector: 'app-swiper-horizontal-cards',
+  imports: [RouterLink],
+  templateUrl: './swiper-horizontal-cards.component.html',
+  styleUrl: './swiper-horizontal-cards.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SwiperHorizontalFilmsComponent {
+export class SwiperHorizontalCardsComponent {
 
   scrollbarColor = input<string>("var(--red)");
   navigationColor = input<string>("var(--red)");

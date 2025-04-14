@@ -1,0 +1,49 @@
+<div class="retro-gallery-container">
+  <h1 class="retro-title">Critic's Corner</h1>
+
+  <div class="film-reel">
+    <div class="film-strip-top"></div>
+
+    <div class="reviews-container">
+      @for (review of formattedReviews; track review.id) {
+      <div class="review-card">
+        <div class="review-header">
+          <div class="avatar-container">
+            <img
+              [src]="review.avatarPath"
+              alt="{{ review.author }}"
+              class="reviewer-avatar"
+              onerror="this.src='assets/images/no_image.jpeg'"
+            />
+          </div>
+          <div class="reviewer-info">
+            <h3 class="reviewer-name">{{ review.author }}</h3>
+            <div class="star-rating">
+              @if (review.rating !== null) { @for (star of review.stars; track
+              $index) {
+              <span
+                class="star"
+                [class.filled]="star === 1"
+                [class.half]="star === 0.5"
+                >★</span
+              >
+              } } @else {
+              <span class="no-rating">No Rating</span>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="review-content">
+          <p>{{ review.content }}</p>
+        </div>
+      </div>
+      } @if (formattedReviews.length === 0) {
+      <div class="empty-state">
+        <p>No reviews available for this film yet.</p>
+      </div>
+      }
+    </div>
+
+    <div class="film-strip-bottom"></div>
+  </div>
+</div>
