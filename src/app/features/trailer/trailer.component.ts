@@ -25,7 +25,6 @@ export class TrailerComponent {
   }
 
   private getSafeUrl(link: string): SafeResourceUrl {
-    console.log("getSafeUrl")
     const embedUrl = `https://www.youtube.com/embed/${link}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }

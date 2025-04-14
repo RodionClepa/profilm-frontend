@@ -39,44 +39,46 @@
     <button
       (click)="setActiveTab(TAB_TOKEN.WATCH)"
       role="tab"
-      [class.active]="openTab === TAB_TOKEN.WATCH"
+      [class.active]="openTab() === TAB_TOKEN.WATCH"
     >
       Watch
     </button>
     <button
       (click)="setActiveTab(TAB_TOKEN.TRAILER)"
       role="tab"
-      [class.active]="openTab === TAB_TOKEN.TRAILER"
+      [class.active]="openTab() === TAB_TOKEN.TRAILER"
     >
       Trailer
     </button>
     <button
       (click)="setActiveTab(TAB_TOKEN.CREW)"
       role="tab"
-      [class.active]="openTab === TAB_TOKEN.CREW"
+      [class.active]="openTab() === TAB_TOKEN.CREW"
     >
       Crew
     </button>
     <button
       (click)="setActiveTab(TAB_TOKEN.EXTRAS)"
       role="tab"
-      [class.active]="openTab === TAB_TOKEN.EXTRAS"
+      [class.active]="openTab() === TAB_TOKEN.EXTRAS"
     >
       Extras (Gallery)
     </button>
     <button
       (click)="setActiveTab(TAB_TOKEN.REVIEW)"
       role="tab"
-      [class.active]="openTab === TAB_TOKEN.REVIEW"
+      [class.active]="openTab() === TAB_TOKEN.REVIEW"
     >
       Review
     </button>
   </nav>
   <div>
-    @switch (openTab) { @case (TAB_TOKEN.WATCH) {
+    @switch (openTab()) { @case (TAB_TOKEN.WATCH) {
     <app-player [filmId]="movie.id"></app-player>
     } @case (TAB_TOKEN.TRAILER) {
     <app-trailer [videos]="movie.videos"></app-trailer>
+    } @case (TAB_TOKEN.EXTRAS) {
+    <app-gallery [images]="movie.images"></app-gallery>
     } }
   </div>
 </section>

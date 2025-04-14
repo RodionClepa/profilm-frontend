@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES_TOKENS } from '../../shared/constants/routes-token.constants';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
@@ -9,6 +9,7 @@ import { RatingBarComponent } from "../../shared/components/rating-bar/rating-ba
 import { FormatRuntimePipe } from "../../shared/pipes/format-runtime.pipe";
 import { PlayerComponent } from "../player/player.component";
 import { TrailerComponent } from "../trailer/trailer.component";
+import { GalleryComponent } from "../gallery/gallery.component";
 
 const TAB_TOKEN = {
   WATCH: 'watch',
@@ -22,7 +23,7 @@ type TabType = typeof TAB_TOKEN[keyof typeof TAB_TOKEN];
 
 @Component({
   selector: 'app-movie',
-  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent],
+  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })
@@ -30,7 +31,7 @@ export class MovieComponent {
 
   movie: MovieDetailsResponse | null = null;
   private readonly openTabKey: string = "tab";
-  openTab: string | null = null;
+  openTab = signal<string | null>(null);
   validTabs = Object.values(TAB_TOKEN);
   readonly TAB_TOKEN = TAB_TOKEN;
 
@@ -54,7 +55,7 @@ export class MovieComponent {
       next: (response: MovieDetailsResponse) => {
         this.movie = response;
         const tab = this.route.snapshot.queryParams[this.openTabKey] as TabType | undefined;
-        this.openTab = tab && this.validTabs.includes(tab) ? tab : null;
+        this.openTab.set(tab && this.validTabs.includes(tab) ? tab : null);
       },
       error: (error) => {
         console.error('Failed to fetch movie:', error);
@@ -65,7 +66,7 @@ export class MovieComponent {
 
   setActiveTab(tab: TabType) {
     if (this.validTabs.includes(tab)) {
-      this.openTab = tab;
+      this.openTab.set(tab);
       this.router.navigate([], {
         queryParams: { [this.openTabKey]: tab },
         queryParamsHandling: 'merge',
