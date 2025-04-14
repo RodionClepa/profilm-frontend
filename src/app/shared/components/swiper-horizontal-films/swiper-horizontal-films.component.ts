@@ -1,5 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 export interface SwiperCard {
   id: number;
@@ -10,7 +9,7 @@ export interface SwiperCard {
 
 @Component({
   selector: 'app-swiper-horizontal-films',
-  imports: [DatePipe],
+  imports: [],
   templateUrl: './swiper-horizontal-films.component.html',
   styleUrl: './swiper-horizontal-films.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -29,4 +28,9 @@ export class SwiperHorizontalFilmsComponent {
     768: { slidesPerView: 4, spaceBetween: 16, slidesPerGroup: 4 },
     1024: { slidesPerView: 6, spaceBetween: 16, slidesPerGroup: 6 },
   };
+
+  handleImageError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    img.src = 'https://placehold.co/600x400'; // Replace with your fallback image path
+  }
 }

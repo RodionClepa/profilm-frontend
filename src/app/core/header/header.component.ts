@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Theme, ThemeService } from '../services/theme/theme.service';
 
@@ -8,7 +8,7 @@ import { Theme, ThemeService } from '../services/theme/theme.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   currentColorTheme: Theme = Theme.SYSTEM;
   themes = Theme;
 

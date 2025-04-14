@@ -1,0 +1,1 @@
+export const NO_IMAGE_PATH = 'assets/images/no_image.jpeg' as const;

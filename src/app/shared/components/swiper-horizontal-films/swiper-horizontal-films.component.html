@@ -18,10 +18,14 @@
   <swiper-slide>
     <!-- TODO add redirect -->
     <a class="slide-card">
-      <img [src]="card.posterPath" [alt]="card.title + ' poster'" />
+      <img
+        [src]="card.posterPath"
+        [alt]="card.title + ' poster'"
+        (error)="handleImageError($event)"
+      />
       <div class="content-film">
         <p class="title" [title]="card.title">{{ card.title }}</p>
-        <p class="date">{{ card.subTitle | date : "MMM d, y" }}</p>
+        <p class="date">{{ card.subTitle }}</p>
       </div>
     </a>
   </swiper-slide>

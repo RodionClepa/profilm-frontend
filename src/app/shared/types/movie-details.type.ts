@@ -29,6 +29,26 @@ export interface MovieVideo {
   link: string;
 }
 
+export interface MovieCrew {
+  adult: boolean;
+  gender: number;
+  id: number;
+  name: string;
+  popularity: number;
+  profilePath: string | null;
+  job: string;
+}
+
+export interface MovieCast {
+  adult: boolean;
+  gender: number;
+  id: number;
+  name: string;
+  character: string;
+  profilePath: string | null;
+  order: number;
+}
+
 export interface MovieDetailsResponse {
   id: number;
   title: string;
@@ -45,8 +65,11 @@ export interface MovieDetailsResponse {
   voteCount: number;
   tagline: string;
   runtime: number;
-  productionCompanies: ProductionCompany[],
-  images: MovieImage[],
-  reviews: MovieReviewsResult,
-  videos: MovieVideo[]
+  productionCompanies: ProductionCompany[];
+  images: MovieImage[];
+  reviews: MovieReviewsResult;
+  videos: MovieVideo[];
+  director: MovieCrew | null;
+  producer: MovieCrew | null;
+  cast: MovieCast[];
 }

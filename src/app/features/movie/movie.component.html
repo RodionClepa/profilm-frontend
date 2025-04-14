@@ -51,11 +51,11 @@
       Trailer
     </button>
     <button
-      (click)="setActiveTab(TAB_TOKEN.CREW)"
+      (click)="setActiveTab(TAB_TOKEN.CAST)"
       role="tab"
-      [class.active]="openTab() === TAB_TOKEN.CREW"
+      [class.active]="openTab() === TAB_TOKEN.CAST"
     >
-      Crew
+      Cast
     </button>
     <button
       (click)="setActiveTab(TAB_TOKEN.EXTRAS)"
@@ -72,6 +72,7 @@
       Review
     </button>
   </nav>
+  @defer {
   <div>
     @switch (openTab()) { @case (TAB_TOKEN.WATCH) {
     <app-player [filmId]="movie.id"></app-player>
@@ -79,8 +80,16 @@
     <app-trailer [videos]="movie.videos"></app-trailer>
     } @case (TAB_TOKEN.EXTRAS) {
     <app-gallery [images]="movie.images"></app-gallery>
+    } @case (TAB_TOKEN.CAST) {
+    <app-cast [cast]="movie.cast"></app-cast>
     } }
   </div>
+  } @placeholder {
+  <div class="loading-retro">
+    <app-loader></app-loader>
+    <p>Loading Gallery...</p>
+  </div>
+  }
 </section>
 
 <h2>end</h2>

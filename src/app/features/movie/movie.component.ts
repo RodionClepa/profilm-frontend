@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES_TOKENS } from '../../shared/constants/routes-token.constants';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
@@ -10,12 +10,13 @@ import { FormatRuntimePipe } from "../../shared/pipes/format-runtime.pipe";
 import { PlayerComponent } from "../player/player.component";
 import { TrailerComponent } from "../trailer/trailer.component";
 import { GalleryComponent } from "../gallery/gallery.component";
+import { CastComponent } from "../cast/cast.component";
 
 const TAB_TOKEN = {
   WATCH: 'watch',
   EXTRAS: 'extras',
   TRAILER: 'trailer',
-  CREW: 'crew',
+  CAST: 'cast',
   REVIEW: 'review',
 } as const;
 
@@ -23,11 +24,11 @@ type TabType = typeof TAB_TOKEN[keyof typeof TAB_TOKEN];
 
 @Component({
   selector: 'app-movie',
-  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent],
+  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent, CastComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })
-export class MovieComponent {
+export class MovieComponent implements OnInit {
 
   movie: MovieDetailsResponse | null = null;
   private readonly openTabKey: string = "tab";
