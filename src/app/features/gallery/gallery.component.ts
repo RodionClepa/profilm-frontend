@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, input, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MovieImage } from '../../shared/types/movie-details.type';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { LoaderComponent } from "../../shared/components/loader/loader.component";
@@ -10,7 +10,7 @@ import { LoaderComponent } from "../../shared/components/loader/loader.component
   styleUrl: './gallery.component.scss'
 })
 export class GalleryComponent implements OnInit, AfterViewInit {
-  @Input() images: MovieImage[] = [];
+  images = input<MovieImage[]>([]);
   @ViewChild('thumbnailsContainer') thumbnailsContainer!: ElementRef;
 
   selectedImage: MovieImage | null = null;
@@ -19,8 +19,8 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
-    if (this.images && this.images.length > 0) {
-      this.selectedImage = this.images[0];
+    if (this.images && this.images().length > 0) {
+      this.selectedImage = this.images()[0];
     }
   }
 
@@ -38,17 +38,17 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   }
 
   nextImage() {
-    if (this.images.length > 0) {
-      this.currentIndex = (this.currentIndex + 1) % this.images.length;
-      this.selectedImage = this.images[this.currentIndex];
+    if (this.images().length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.images().length;
+      this.selectedImage = this.images()[this.currentIndex];
       this.scrollToThumbnail(this.currentIndex);
     }
   }
 
   prevImage() {
-    if (this.images.length > 0) {
-      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-      this.selectedImage = this.images[this.currentIndex];
+    if (this.images().length > 0) {
+      this.currentIndex = (this.currentIndex - 1 + this.images().length) % this.images().length;
+      this.selectedImage = this.images()[this.currentIndex];
       this.scrollToThumbnail(this.currentIndex);
     }
   }
