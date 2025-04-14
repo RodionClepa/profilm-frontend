@@ -1,4 +1,5 @@
 import { Genre } from "./genre.type";
+import { Movie } from "./movie-tv.type";
 import { ProductionCompany } from "./production.type";
 
 export interface MovieImage {
@@ -72,4 +73,5 @@ export interface MovieDetailsResponse {
   director: MovieCrew | null;
   producer: MovieCrew | null;
   cast: MovieCast[];
+  recommendations: Movie[];
 }

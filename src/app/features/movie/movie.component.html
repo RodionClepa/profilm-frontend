@@ -93,8 +93,14 @@
   </div>
   }
 </section>
-
-<h2>end</h2>
+<section class="purple-section bg-color-transition">
+  <h2>Similar Movies</h2>
+  <app-swiper-horizontal-cards
+    [cardList]="recommendations"
+    [scrollbarColor]="'var(--purple)'"
+    [navigationColor]="'var(--purple)'"
+  ></app-swiper-horizontal-cards>
+</section>
 } @else {
 <div class="loading-retro">
   <app-loader></app-loader>

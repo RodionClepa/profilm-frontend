@@ -12,6 +12,8 @@ import { TrailerComponent } from "../trailer/trailer.component";
 import { GalleryComponent } from "../gallery/gallery.component";
 import { CastComponent } from "../cast/cast.component";
 import { ReviewsComponent } from "../reviews/reviews.component";
+import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
+import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
 
 const TAB_TOKEN = {
   WATCH: 'watch',
@@ -25,7 +27,7 @@ type TabType = typeof TAB_TOKEN[keyof typeof TAB_TOKEN];
 
 @Component({
   selector: 'app-movie',
-  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent, CastComponent, ReviewsComponent],
+  imports: [DatePipe, CommonModule, LoaderComponent, RatingBarComponent, FormatRuntimePipe, PlayerComponent, TrailerComponent, GalleryComponent, CastComponent, ReviewsComponent, SwiperHorizontalCardsComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })
@@ -36,11 +38,13 @@ export class MovieComponent implements OnInit {
   openTab = signal<string | null>(null);
   validTabs = Object.values(TAB_TOKEN);
   readonly TAB_TOKEN = TAB_TOKEN;
+  recommendations: SwiperCard[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private filmService: FilmMediaService
+    private filmService: FilmMediaService,
+    private filmMediaMapper: FilmMediaMapperService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +62,7 @@ export class MovieComponent implements OnInit {
         this.movie = response;
         const tab = this.route.snapshot.queryParams[this.openTabKey] as TabType | undefined;
         this.openTab.set(tab && this.validTabs.includes(tab) ? tab : null);
+        this.recommendations = this.movie.recommendations.map((movie) => this.filmMediaMapper.movieToSwipperCard(movie));
       },
       error: (error) => {
         console.error('Failed to fetch movie:', error);

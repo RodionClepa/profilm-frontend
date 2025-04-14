@@ -62,6 +62,8 @@ $red-light: #f16154;
 $red-tint-light: #f1d0d0ae;
 $blue-light: #2dc5f4;
 $blue-tint-light: #a3e0f7ae;
+$purple-light: #9253a1;
+$purple-tint-light: #cdc5d6;
 $border-light: #666;
 $skeleton-color-light: #e3e2de;
 
@@ -77,6 +79,8 @@ $red-dark: #d1414c;
 $red-tint-dark: #5a0e13;
 $blue-dark: #00b2d6;
 $blue-tint-dark: #004c61;
+$purple-dark: #d472eb;
+$purple-tint-dark: #e2dcef;
 $border-dark: #b3b3b3;
 $skeleton-color-dark: #4f4f4f;
 
@@ -94,6 +98,8 @@ $skeleton-color-dark: #4f4f4f;
   --red-tint: #{$red-tint-light};
   --blue: #{$blue-light};
   --blue-tint: #{$blue-tint-light};
+  --purple: #{$purple-light};
+  --purple-tint: #{$purple-tint-light};
   --skeleton-color: #{$skeleton-color-light};
 }
 
@@ -110,6 +116,8 @@ $skeleton-color-dark: #4f4f4f;
   --red-tint: #{$red-tint-dark};
   --blue: #{$blue-dark};
   --blue-tint: #{$blue-tint-dark};
+  --purple: #{$purple-dark};
+  --purple-tint: #{$purple-tint-dark};
   --skeleton-color: #{$skeleton-color-dark};
 }
 
@@ -143,4 +151,6 @@ $red: var(--red);
 $red-tint: var(--red-tint);
 $blue: var(--blue);
 $blue-tint: var(--blue-tint);
+$purple: var(--purple);
+$purple-tint: var(--purple-tint);
 $skeleton-color: var(--skeleton-color);

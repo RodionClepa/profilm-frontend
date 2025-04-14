@@ -156,3 +156,20 @@ section {
     }
   }
 }
+
+.purple-section {
+  margin-top: 32px;
+  padding: $padding-sm;
+
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $purple-tint 70%,
+    $purple-tint 100%
+  );
+  border: 1px solid $purple;
+
+  h2 {
+    color: $purple;
+  }
+}
