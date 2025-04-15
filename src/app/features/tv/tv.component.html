@@ -1,1 +1,115 @@
-<p>tv works!</p>
+@if(tv) {
+<main>
+  <div class="film-container bg-color-transition pink-tint-gradient">
+    <div class="film-poster">
+      <img [src]="tv.poster" [alt]="tv.title + ' poster'" />
+    </div>
+    <div class="film-info">
+      <h2>{{ tv.title }}</h2>
+      <p class="release-date">{{ tv.releaseDate | date : "MMM d, y" }}</p>
+      <ul class="genres">
+        @for (genre of tv.genres; track genre.id) {
+        <li>{{ genre.name }}</li>
+        }
+      </ul>
+      <p class="budget">Budget:</p>
+      <p class="revenue">Revenue:</p>
+      @if(tv.tagline) {
+      <p class="tagline">“{{ tv.tagline }}”</p>
+      }
+      <p class="overview">{{ tv.overview }}</p>
+      <div class="ratings">
+        <div class="numbers">
+          <p>⭐ Rating: {{ tv.voteAverage | number : "1.1-1" }}/10</p>
+          <p>🗳️ Votes: {{ tv.voteCount | number }}</p>
+        </div>
+        <app-rating-bar [rating]="tv.voteAverage * 10"></app-rating-bar>
+      </div>
+      <p class="adult" [ngClass]="{ 'adult-true': tv.adult }">
+        {{ tv.adult ? "Adult Content" : "General Audience" }}
+      </p>
+    </div>
+  </div>
+</main>
+<section class="tabs">
+  <nav role="tablist">
+    <button
+      (click)="setActiveTab(TAB_TOKEN.WATCH)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.WATCH"
+    >
+      Watch
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.AIR_DATES)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.AIR_DATES"
+    >
+      Air Dates
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.TRAILER)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.TRAILER"
+    >
+      Trailer
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.CAST)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.CAST"
+    >
+      Cast
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.EXTRAS)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.EXTRAS"
+    >
+      Extras (Gallery)
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.REVIEW)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.REVIEW"
+    >
+      Review
+    </button>
+  </nav>
+  @defer {
+  <div>
+    @switch (openTab()) { @case (TAB_TOKEN.WATCH) {
+    <app-player [filmId]="tv.id"></app-player>
+    } @case (TAB_TOKEN.TRAILER) {
+    <app-trailer [videos]="tv.videos"></app-trailer>
+    } @case (TAB_TOKEN.EXTRAS) {
+    <app-gallery [images]="tv.images"></app-gallery>
+    } @case (TAB_TOKEN.CAST) {
+    <app-cast [cast]="tv.cast"></app-cast>
+    } @case(TAB_TOKEN.REVIEW) {
+    <app-reviews [reviews]="tv.reviews.results"></app-reviews>
+    } @case(TAB_TOKEN.AIR_DATES) {
+    <app-air-dates [airDates]="tv.seasonsEpisodes"></app-air-dates>
+    } }
+  </div>
+  } @placeholder {
+  <div class="loading-retro">
+    <app-loader></app-loader>
+    <p>Loading Gallery...</p>
+  </div>
+  }
+</section>
+<section class="pink-section bg-color-transition">
+  <h2>Similar TV Series</h2>
+  <app-swiper-horizontal-cards
+    [cardList]="recommendations"
+    [scrollbarColor]="'var(--pink)'"
+    [navigationColor]="'var(--pink)'"
+  ></app-swiper-horizontal-cards>
+</section>
+} @else {
+<div class="loading-retro">
+  <app-loader></app-loader>
+  <p>Loading movie details...</p>
+</div>
+}

@@ -4,6 +4,8 @@ import { formatDate } from '@angular/common';
 import { SwiperCard } from '../../components/swiper-horizontal-films/swiper-horizontal-cards.component';
 import { PromoCard } from '../../../features/landing/promo-slider/promo-slider.component';
 import { ROUTES_TOKENS } from '../../constants/routes-token.constants';
+import { TVSeasonDetails } from '../../types/tv-details.type';
+import { AirDateSeason } from '../../../features/air-dates/air-dates.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +46,24 @@ export class FilmMediaMapperService {
       overview: movie.overview,
       posterPath: movie.posterPath
     }
+  }
+
+  public tvSeasonToAirDate(season: TVSeasonDetails): AirDateSeason {
+    const today = new Date();
+    return {
+      id: season.id,
+      seasonNumber: season.seasonNumber,
+      airDate: season.airDate,
+      episodes: season.episodes.map(episode => {
+        return {
+          airDate: episode.airDate,
+          episodeNumber: episode.episodeNumber,
+          id: episode.id,
+          name: episode.name,
+          runtime: episode.runtime,
+          released: new Date(episode.airDate) <= today
+        };
+      }).sort((a, b) => new Date(b.airDate).getTime() - new Date(a.airDate).getTime())
+    };
   }
 }

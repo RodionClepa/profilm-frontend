@@ -7,6 +7,7 @@ import { MovieResponse, TVResponse } from '../../types/movie-tv.type';
 import { posterSize } from '../../constants/image-sizes.constants';
 import { TimeWindow } from '../../constants/movieApi.constants';
 import { MovieDetailsResponse } from '../../types/movie-details.type';
+import { TVDetailsResponse } from '../../types/tv-details.type';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,13 @@ export class FilmMediaService {
     return this.http.get<MovieDetailsResponse>(this.apiService.movieById(id))
       .pipe(
         catchError(this.errorHandler.handleError<MovieDetailsResponse>('movieDetails'))
+      );
+  }
+
+  tvDetails(id: number): Observable<TVDetailsResponse> {
+    return this.http.get<TVDetailsResponse>(this.apiService.tvById(id))
+      .pipe(
+        catchError(this.errorHandler.handleError<TVDetailsResponse>('tvDetails'))
       );
   }
 }

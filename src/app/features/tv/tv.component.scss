@@ -1,0 +1,19 @@
+@use "variables" as *;
+@use "film-details" as *;
+
+.pink-section {
+  margin-top: 32px;
+  padding: $padding-sm;
+
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $pink-tint 70%,
+    $pink-tint 100%
+  );
+  border: 1px solid $pink;
+
+  h2 {
+    color: $pink;
+  }
+}

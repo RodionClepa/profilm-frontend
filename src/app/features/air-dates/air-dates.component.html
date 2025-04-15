@@ -1,0 +1,90 @@
+<div class="retro-tv-screen">
+  <div class="retro-scanlines"></div>
+  <div class="retro-glare"></div>
+
+  <ul class="seasons-tabs">
+    @for(season of sortedAirDates; track season.id) {
+    <li
+      class="season-tab"
+      [class.active]="this.activeSeason?.id === season.id"
+      (click)="setActiveSeason(season)"
+    >
+      Season {{ season.seasonNumber }}
+    </li>
+    }
+  </ul>
+
+  @if(activeSeason) {
+  <div class="season-content">
+    <div class="season-header">
+      <span class="season-number">Season {{ activeSeason.seasonNumber }}</span>
+      <span class="season-date"
+        >- {{ activeSeason.airDate | date : "MMM d, y" }}</span
+      >
+    </div>
+
+    <div class="episodes-table">
+      <div class="table-header">
+        <div class="col-no">No.</div>
+        <div class="col-name">Name</div>
+        <div class="col-date">Date</div>
+        <div class="col-status">Status</div>
+      </div>
+
+      <div
+        class="table-row"
+        *ngFor="let episode of currentPages[activeSeason.id].episodes"
+      >
+        <div class="col-no">{{ episode.episodeNumber }}</div>
+        <div class="col-name" [title]="episode.name">{{ episode.name }}</div>
+        <div class="col-date">{{ episode.airDate | date : "MMM d, y" }}</div>
+        <div
+          class="col-status"
+          [class]="episode.released ? 'status-released' : 'status-upcoming'"
+        >
+          @if (episode.released) { Released } @else { Upcoming }
+        </div>
+      </div>
+
+      @if (activeSeason.episodes.length === 0) {
+      <div class="no-episodes">
+        <p>No episodes available for this season</p>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button
+      class="retro-button prev-button"
+      [disabled]="currentPages[activeSeason.id].page === 1"
+      [class.disabled]="currentPages[activeSeason.id].page === 1"
+      (click)="goToPreviousPage(activeSeason.id)"
+    >
+      Previous page
+    </button>
+
+    <div class="page-indicator">
+      Page {{ currentPages[activeSeason.id].page }} of
+      {{
+        activeSeason.episodes.length / this.episodesPerPage | number : "1.0-0"
+      }}
+    </div>
+
+    <button
+      class="retro-button next-button"
+      [disabled]="
+        currentPages[activeSeason.id].page ===
+        currentPages[activeSeason.id].totalPages
+      "
+      [class.disabled]="
+        currentPages[activeSeason.id].page ===
+        currentPages[activeSeason.id].totalPages
+      "
+      (click)="goToNextPage(activeSeason.id)"
+    >
+      Next page
+    </button>
+  </div>
+  }
+</div>

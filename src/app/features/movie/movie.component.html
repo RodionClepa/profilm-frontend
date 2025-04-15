@@ -1,10 +1,10 @@
 @if(movie) {
 <main>
-  <div class="movie-container bg-color-transition pink-tint-gradient">
-    <div class="movie-poster">
+  <div class="film-container bg-color-transition pink-tint-gradient">
+    <div class="film-poster">
       <img [src]="movie.poster" [alt]="movie.title + ' poster'" />
     </div>
-    <div class="movie-info">
+    <div class="film-info">
       <h2>{{ movie.title }}</h2>
       <p class="release-date">{{ movie.releaseDate | date : "MMM d, y" }}</p>
       <ul class="genres">
@@ -19,7 +19,9 @@
       <p class="revenue">
         Revenue: {{ movie.revenue | currency : "USD" : "symbol" }}
       </p>
-      <p class="tagline" *ngIf="movie.tagline">“{{ movie.tagline }}”</p>
+      @if(movie.tagline) {
+      <p class="tagline">“{{ movie.tagline }}”</p>
+      }
       <p class="overview">{{ movie.overview }}</p>
       <div class="ratings">
         <div class="numbers">
