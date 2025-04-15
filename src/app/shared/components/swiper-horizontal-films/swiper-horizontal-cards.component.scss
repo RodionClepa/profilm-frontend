@@ -15,6 +15,7 @@ swiper-slide {
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-decoration: none;
 
     img {
       flex: 1;
@@ -49,7 +50,7 @@ swiper-slide {
   height: 300px;
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: $gap-md;
 
   .slide-card {
     flex: 1;
@@ -79,7 +80,7 @@ swiper-slide {
     .slide-card:nth-child(n + 3) {
       display: none;
     }
-    gap: 10px;
+    gap: $gap-sm;
   }
 
   // 480px - 767px 3 cards
@@ -87,7 +88,7 @@ swiper-slide {
     .slide-card:nth-child(n + 4) {
       display: none;
     }
-    gap: 20px;
+    gap: $gap-md;
   }
 
   // 768px - 1023px 4 cards
@@ -95,7 +96,7 @@ swiper-slide {
     .slide-card:nth-child(n + 5) {
       display: none;
     }
-    gap: 20px;
+    gap: $gap-md;
   }
 
   // >1024px 6 cards
@@ -103,6 +104,6 @@ swiper-slide {
     .slide-card:nth-child(n + 7) {
       display: none;
     }
-    gap: 20px;
+    gap: $gap-md;
   }
 }

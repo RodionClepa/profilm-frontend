@@ -16,19 +16,22 @@
 >
   @for(card of cardList(); track card.id) {
   <swiper-slide>
-    <!-- TODO add redirect -->
-    <a class="slide-card">
-      <img [src]="card.posterPath" [alt]="card.title + ' poster'" />
+    <a class="slide-card" [routerLink]="card.link">
+      <img
+        [src]="card.posterPath"
+        [alt]="card.title + ' poster'"
+        (error)="handleImageError($event)"
+      />
       <div class="content-film">
         <p class="title" [title]="card.title">{{ card.title }}</p>
-        <p class="date">{{ card.subTitle | date : "MMM d, y" }}</p>
+        <p class="date">{{ card.subTitle }}</p>
       </div>
     </a>
   </swiper-slide>
   }
 </swiper-container>
 } @placeholder {
-<div class="placeholder skeleton-container">
+<div class="placeholder">
   @for (i of skeletonCards; track i) {
   <div class="slide-card skeleton">
     <div class="skeleton-image"></div>

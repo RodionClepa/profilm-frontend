@@ -47,26 +47,40 @@ $font-weight-black: 900;
 
 // Colors
 $white: #fcf5ed;
+$black: #000;
+$gray: gray;
 
 // Light Theme Colors
 $background-light: #f1efe2;
 $text-primary-light: #353535;
 $text-secondary-light: #0d5853;
 $pink-light: #f063a4;
+$pink-tint-light: #f1efe2ae;
 $orange-light: #f89e4f;
+$orange-tint-light: #f6e6c6ae;
 $red-light: #f16154;
+$red-tint-light: #f1d0d0ae;
 $blue-light: #2dc5f4;
+$blue-tint-light: #a3e0f7ae;
+$purple-light: #9253a1;
+$purple-tint-light: #cdc5d6;
 $border-light: #666;
-$skeleton-color-light: #d6d6d5;
+$skeleton-color-light: #e3e2de;
 
 // Dark Theme Colors
 $background-dark: #353535;
 $text-primary-dark: #d5d5d5;
-$text-secondary-dark: #a7963c;
+$text-secondary-dark: #ddcc73;
 $pink-dark: #e6005c;
+$pink-tint-dark: #2a001a;
 $orange-dark: #d97f26;
+$orange-tint-dark: #5a320e;
 $red-dark: #d1414c;
+$red-tint-dark: #5a0e13;
 $blue-dark: #00b2d6;
+$blue-tint-dark: #004c61;
+$purple-dark: #d472eb;
+$purple-tint-dark: #e2dcef;
 $border-dark: #b3b3b3;
 $skeleton-color-dark: #4f4f4f;
 
@@ -77,9 +91,15 @@ $skeleton-color-dark: #4f4f4f;
   --textSecColor: #{$text-secondary-light};
   --borderColor: #{$border-light};
   --pink: #{$pink-light};
+  --pink-tint: #{$pink-tint-light};
   --orange: #{$orange-light};
+  --orange-tint: #{$orange-tint-light};
   --red: #{$red-light};
+  --red-tint: #{$red-tint-light};
   --blue: #{$blue-light};
+  --blue-tint: #{$blue-tint-light};
+  --purple: #{$purple-light};
+  --purple-tint: #{$purple-tint-light};
   --skeleton-color: #{$skeleton-color-light};
 }
 
@@ -89,9 +109,15 @@ $skeleton-color-dark: #4f4f4f;
   --textSecColor: #{$text-secondary-dark};
   --borderColor: #{$border-dark};
   --pink: #{$pink-dark};
+  --pink-tint: #{$pink-tint-dark};
   --orange: #{$orange-dark};
+  --orange-tint: #{$orange-tint-dark};
   --red: #{$red-dark};
+  --red-tint: #{$red-tint-dark};
   --blue: #{$blue-dark};
+  --blue-tint: #{$blue-tint-dark};
+  --purple: #{$purple-dark};
+  --purple-tint: #{$purple-tint-dark};
   --skeleton-color: #{$skeleton-color-dark};
 }
 
@@ -118,7 +144,13 @@ $text-color: var(--textColor);
 $text-sec-color: var(--textSecColor);
 $border-color: var(--borderColor);
 $pink: var(--pink);
+$pink-tint: var(--pink-tint);
 $orange: var(--orange);
+$orange-tint: var(--orange-tint);
 $red: var(--red);
+$red-tint: var(--red-tint);
 $blue: var(--blue);
+$blue-tint: var(--blue-tint);
+$purple: var(--purple);
+$purple-tint: var(--purple-tint);
 $skeleton-color: var(--skeleton-color);

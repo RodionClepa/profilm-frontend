@@ -3,9 +3,10 @@ import { ApiService } from '../api/api.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { ErrorApiHandlerService } from '../error-api-handler/error-api-handler.service';
-import { MovieResponse, TVResponse } from '../../types/MovieTv.type';
+import { MovieResponse, TVResponse } from '../../types/movie-tv.type';
 import { posterSize } from '../../constants/image-sizes.constants';
 import { TimeWindow } from '../../constants/movieApi.constants';
+import { MovieDetailsResponse } from '../../types/movie-details.type';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,13 @@ export class FilmMediaService {
     return this.http.get<MovieResponse>(this.apiService.upcomingMovies(), { params })
       .pipe(
         catchError(this.errorHandler.handleError<MovieResponse>('movieUpcoming'))
+      );
+  }
+
+  movieDetails(id: number): Observable<MovieDetailsResponse> {
+    return this.http.get<MovieDetailsResponse>(this.apiService.movieById(id))
+      .pipe(
+        catchError(this.errorHandler.handleError<MovieDetailsResponse>('movieDetails'))
       );
   }
 }

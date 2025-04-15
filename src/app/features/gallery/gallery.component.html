@@ -1,0 +1,84 @@
+@if(images() && images().length > 0) {
+<div class="retro-gallery-container">
+  <div class="retro-gallery-header">
+    <h2 class="retro-title">Movie Gallery</h2>
+    <div class="retro-ratings-info">
+      <span class="retro-badge high-rating">8+</span>
+      <span class="retro-badge medium-rating">6+</span>
+      <span class="retro-badge low-rating"><6</span>
+    </div>
+  </div>
+
+  <div class="retro-gallery-main">
+    @if(images().length > 1) {
+    <button class="retro-nav-button prev-button" (click)="prevImage()">
+      &laquo;
+    </button>
+    } @if(selectedImage) {
+    <div class="main-image-container">
+      <img
+        [src]="selectedImage.filePath"
+        [alt]="'Movie image with rating ' + selectedImage.voteAverage"
+        class="main-image"
+      />
+      <div class="image-info">
+        <div
+          class="rating-badge"
+          [ngClass]="
+            selectedImage.voteAverage >= 8
+              ? 'high-rating'
+              : selectedImage.voteAverage >= 6
+              ? 'medium-rating'
+              : 'low-rating'
+          "
+        >
+          {{ selectedImage.voteAverage | number : "1.1-1" }}
+        </div>
+        <div class="vote-count">{{ selectedImage.voteCount }} votes</div>
+      </div>
+    </div>
+    } @if(images().length > 1) {
+    <button class="retro-nav-button next-button" (click)="nextImage()">
+      &raquo;
+    </button>
+    }
+  </div>
+
+  @if(images().length > 1) {
+  <div #thumbnailsContainer class="retro-gallery-thumbnails">
+    @for(image of images(); track $index; let i = $index) {
+    <div
+      class="thumbnail-container"
+      [class.active]="selectedImage === image"
+      (click)="selectImage(image, i)"
+    >
+      <img
+        [src]="image.filePath"
+        [alt]="'Thumbnail ' + i"
+        class="thumbnail-image"
+      />
+      <div
+        class="thumbnail-rating"
+        [ngClass]="
+          image.voteAverage >= 8
+            ? 'high-rating'
+            : image.voteAverage >= 6
+            ? 'medium-rating'
+            : 'low-rating'
+        "
+      >
+        {{ image.voteAverage | number : "1.1-1" }}
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>
+} @else {
+<div class="retro-empty-state">
+  <div class="retro-empty-frame">
+    <div class="retro-empty-icon">?</div>
+    <p class="retro-empty-text">No images available</p>
+  </div>
+</div>
+}

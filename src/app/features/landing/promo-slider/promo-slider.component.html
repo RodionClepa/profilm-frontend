@@ -1,6 +1,6 @@
 @defer {
 <swiper-container
-  class="mySwiper"
+  class="swiper-container"
   pagination="true"
   effect="coverflow"
   grab-cursor="true"
@@ -16,7 +16,7 @@
   @for(film of filmList(); track film.id) {
   <swiper-slide>
     <a
-      [routerLink]="['/movie', film.id]"
+      [routerLink]="['/', pages.MOVIE, film.id]"
       [ngStyle]="{ 'background-image': 'url(' + film.posterPath + ')' }"
       class="film-link"
     >
@@ -32,5 +32,10 @@
   </swiper-slide>
   }
 </swiper-container>
-
+} @placeholder {
+<div class="placeholder skeleton-container swiper-container skeleton">
+  <div class="film-link skeleton">
+    <div class="film-poster skeleton-image"></div>
+  </div>
+</div>
 }

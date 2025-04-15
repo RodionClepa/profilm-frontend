@@ -1,0 +1,175 @@
+@use "variables" as *;
+
+main {
+  margin-top: 32px;
+  .movie-container {
+    max-width: $max-content-width;
+    margin: 0 auto;
+    padding: $padding-lg;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: $gap-xl;
+    color: $text-color;
+    border: 2px solid $pink;
+    border-radius: 8px;
+
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      padding: $padding-md;
+    }
+  }
+}
+
+.movie-poster {
+  margin: 0 auto;
+  img {
+    width: 100%;
+    max-width: 400px;
+    border: 4px solid $blue;
+    border-radius: 4px;
+    box-shadow: 0 0 8px $blue-tint;
+    filter: saturate(1.2); // More Bright and Poisonous
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-md;
+
+  h2 {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-bold;
+    color: $pink;
+    text-transform: uppercase;
+  }
+
+  .release-date {
+    font-size: $font-size-md;
+    color: $text-sec-color;
+    font-style: italic;
+  }
+
+  .genres {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap-sm;
+    max-height: 64px;
+    overflow-y: auto;
+
+    li {
+      background: $orange;
+      color: $black;
+      padding: $padding-xs $padding-sm;
+      border-radius: 4px;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      box-shadow: 0 0 5px $orange-tint;
+    }
+  }
+
+  .runtime,
+  .budget,
+  .revenue {
+    font-size: $font-size-md;
+    color: $text-color;
+  }
+
+  .tagline {
+    font-size: $font-size-lg;
+    color: $blue;
+    font-style: italic;
+    margin: $gap-sm 0;
+  }
+
+  .overview {
+    font-size: $font-size-md;
+    line-height: 1.6;
+    color: $text-color;
+    padding: $padding-md;
+    border-left: 4px solid $pink;
+    max-height: 160px;
+    overflow-y: auto;
+  }
+
+  .ratings {
+    font-size: $font-size-md;
+    color: $text-color;
+
+    .numbers {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: $gap-xs;
+    }
+  }
+
+  .adult {
+    font-size: $font-size-md;
+    padding: $padding-sm;
+    border-radius: 4px;
+    width: fit-content;
+
+    &.adult-true {
+      background: $red;
+      color: $black;
+      box-shadow: 0 0 5px $red-tint;
+    }
+
+    &:not(.adult-true) {
+      background: $blue;
+      color: $black;
+      box-shadow: 0 0 5px $blue-tint;
+    }
+  }
+}
+
+section {
+  margin-top: $gap-md;
+  nav {
+    display: flex;
+    overflow-x: auto;
+    button {
+      background: none;
+      padding: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: $text-color;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-regular;
+      text-transform: uppercase;
+      border: 1px solid $border-color;
+
+      &:hover {
+        background-color: $blue-tint;
+      }
+
+      &.active {
+        background-color: $blue;
+      }
+    }
+  }
+}
+
+.purple-section {
+  margin-top: 32px;
+  padding: $padding-sm;
+
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $purple-tint 70%,
+    $purple-tint 100%
+  );
+  border: 1px solid $purple;
+
+  h2 {
+    color: $purple;
+  }
+}

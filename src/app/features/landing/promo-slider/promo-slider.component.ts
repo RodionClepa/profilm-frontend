@@ -1,6 +1,7 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ROUTES_TOKENS } from '../../../shared/constants/routes-token.constants';
 
 export interface PromoCard {
   id: number;
@@ -19,4 +20,6 @@ export interface PromoCard {
 })
 export class PromoSliderComponent {
   filmList = input<PromoCard[]>([]);
+
+  pages = ROUTES_TOKENS;
 }

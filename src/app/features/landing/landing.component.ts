@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
-import { MovieResponse, TVResponse } from '../../shared/types/MovieTv.type';
-import { SwiperCard, SwiperHorizontalFilmsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-films.component";
+import { MovieResponse, TVResponse } from '../../shared/types/movie-tv.type';
+import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
 import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
 import { TimeWindow } from '../../shared/constants/movieApi.constants';
 import { PromoCard, PromoSliderComponent } from "./promo-slider/promo-slider.component";
@@ -9,7 +9,7 @@ import { posterSize } from '../../shared/constants/image-sizes.constants';
 
 @Component({
   selector: 'app-landing',
-  imports: [SwiperHorizontalFilmsComponent, PromoSliderComponent],
+  imports: [SwiperHorizontalCardsComponent, PromoSliderComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

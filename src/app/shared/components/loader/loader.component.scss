@@ -1,0 +1,57 @@
+@use "variables" as *;
+
+.retro-loader {
+  min-width: 100px;
+  max-width: 100%;
+  height: 100%;
+  max-height: 250px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 10px,
+    $pink 10px,
+    $pink 12px
+  );
+  position: relative;
+  animation: scan-lines 1s linear infinite;
+  border: 2px solid $border-color;
+  box-shadow: 0 0 10px $orange;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: $pink;
+    opacity: 0.8;
+    animation: crt-flicker 0.5s infinite;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+@keyframes scan-lines {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 12px;
+  }
+}
+
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}

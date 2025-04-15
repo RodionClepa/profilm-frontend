@@ -3,32 +3,77 @@
 main {
   section {
     margin-top: 32px;
+    padding: $padding-sm;
+
+    h2 {
+      font-size: $font-size-xxl;
+      margin-bottom: 12px;
+    }
   }
 }
 
-.category-title {
-  font-size: $font-size-xxl;
-  margin-bottom: 12px;
+.pink-section {
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $pink-tint 70%,
+    $pink-tint 100%
+  );
+  border: 1px solid $pink;
 
-  &.pink {
+  h2 {
     color: $pink;
   }
+}
 
-  &.orange {
+.orange-section {
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $orange-tint 70%,
+    $orange-tint 100%
+  );
+  border: 1px solid $orange;
+
+  h2 {
     color: $orange;
   }
+}
 
-  &.red {
+.red-section {
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $red-tint 70%,
+    $red-tint 100%
+  );
+  border: 1px solid $red;
+
+  h2 {
     color: $red;
   }
+}
 
-  &.blue {
+.blue-section {
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $blue-tint 70%,
+    $blue-tint 100%
+  );
+  border: 1px solid $blue;
+
+  h2 {
     color: $blue;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .category-title {
-    font-size: $font-size-lg;
+  main {
+    section {
+      h2 {
+        font-size: $font-size-lg;
+      }
+    }
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SwiperHorizontalFilmsComponent } from './swiper-horizontal-films.component';
+import { SwiperHorizontalCardsComponent } from './swiper-horizontal-cards.component';
 
 describe('SwiperHorizontalFilmsComponent', () => {
-  let component: SwiperHorizontalFilmsComponent;
-  let fixture: ComponentFixture<SwiperHorizontalFilmsComponent>;
+  let component: SwiperHorizontalCardsComponent;
+  let fixture: ComponentFixture<SwiperHorizontalCardsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SwiperHorizontalFilmsComponent]
+      imports: [SwiperHorizontalCardsComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(SwiperHorizontalFilmsComponent);
+    fixture = TestBed.createComponent(SwiperHorizontalCardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -18,6 +19,15 @@ html {
   transition: background-color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms,
     color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
   transition-delay: 0 !important;
+}
+
+.pink-tint-gradient {
+  background: linear-gradient(
+    0deg,
+    transparent 0,
+    $pink-tint 70%,
+    $pink-tint 100%
+  );
 }
 
 body {
@@ -61,5 +71,27 @@ body {
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+// Loader wrapper
+.loading-retro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $bg-color;
+  color: $text-color;
+  text-align: center;
+
+  app-loader {
+    width: 100%;
+    height: 250px;
+    margin: $gap-md 0;
+  }
+
+  p {
+    font-size: $font-size-lg;
+    text-transform: uppercase;
   }
 }
