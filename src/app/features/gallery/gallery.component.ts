@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Inject, input, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
-import { MovieImage } from '../../shared/types/movie-details.type';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ImageResponse } from '../../shared/types/image.type';
 
 @Component({
   selector: 'app-gallery',
@@ -9,10 +9,10 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrl: './gallery.component.scss'
 })
 export class GalleryComponent implements OnInit, AfterViewInit {
-  images = input<MovieImage[]>([]);
+  images = input<ImageResponse[]>([]);
   @ViewChild('thumbnailsContainer') thumbnailsContainer!: ElementRef;
 
-  selectedImage: MovieImage | null = null;
+  selectedImage: ImageResponse | null = null;
   currentIndex = 0;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
@@ -30,7 +30,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
       }, 100);
   }
 
-  selectImage(image: MovieImage, index: number) {
+  selectImage(image: ImageResponse, index: number) {
     this.selectedImage = image;
     this.currentIndex = index;
     this.scrollToThumbnail(index);

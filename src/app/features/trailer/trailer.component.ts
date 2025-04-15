@@ -1,8 +1,8 @@
 import { Component, computed, input, OnInit } from '@angular/core';
-import { MovieVideo } from '../../shared/types/movie-details.type';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { VideoResponse } from '../../shared/types/video.type';
 
-interface TrailerVideo extends MovieVideo {
+interface TrailerVideo extends VideoResponse {
   youtubeUrl: SafeResourceUrl
 }
 
@@ -13,7 +13,7 @@ interface TrailerVideo extends MovieVideo {
   styleUrl: './trailer.component.scss',
 })
 export class TrailerComponent implements OnInit {
-  videos = input<MovieVideo[]>([]);
+  videos = input<VideoResponse[]>([]);
   formattedVideos: TrailerVideo[] = [];
   constructor(private sanitizer: DomSanitizer) { }
 
