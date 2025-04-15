@@ -29,7 +29,7 @@ export class FilmMediaMapperService {
 
     return {
       id: tv.id,
-      title: tv.name,
+      title: tv.title,
       subTitle: formattedReleaseDate || '',
       posterPath: tv.posterPath,
       link: `/${ROUTES_TOKENS.TV}/${tv.id}`

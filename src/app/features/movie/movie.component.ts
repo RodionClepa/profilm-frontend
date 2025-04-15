@@ -48,6 +48,7 @@ export class MovieComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("ngOnInit")
     const id = this.route.snapshot.paramMap.get('id');
     if (id && /^\d+$/.test(id) && Number(id) > 0) {
       this.getMovieData(Number(id));
@@ -57,6 +58,7 @@ export class MovieComponent implements OnInit {
   }
 
   getMovieData(id: number) {
+    console.log("getMovieData")
     this.filmService.movieDetails(id).subscribe({
       next: (response: MovieDetailsResponse) => {
         this.movie = response;
