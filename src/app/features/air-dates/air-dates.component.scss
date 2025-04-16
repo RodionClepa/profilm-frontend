@@ -1,0 +1,260 @@
+@use "variables" as *;
+
+.retro-tv-screen {
+  background-color: $bg-color;
+  border-radius: 15px;
+  padding: $padding-lg;
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.retro-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.retro-glare {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  height: 200px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(-7deg);
+  pointer-events: none;
+  z-index: 9;
+}
+
+.seasons-tabs {
+  display: flex;
+  gap: $gap-xs;
+  overflow-x: auto;
+  list-style: none;
+
+  .season-tab {
+    padding: $padding-sm $padding-md;
+    background-color: $blue-tint;
+    color: $text-color;
+    border: 2px solid $border-color;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    font-weight: $font-weight-medium;
+    min-width: fit-content;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: $blue-tint;
+    }
+
+    &.active {
+      background-color: $pink-tint;
+      color: $text-color;
+      font-weight: $font-weight-bold;
+      border-color: $pink;
+    }
+  }
+}
+
+.season-content {
+  border: 2px solid $border-color;
+  margin-bottom: $gap-lg;
+  background-color: rgba($bg-color, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.season-header {
+  display: flex;
+  gap: $gap-sm;
+  align-items: center;
+  padding: $padding-md;
+  border-bottom: 2px solid $border-color;
+
+  .season-number {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+    letter-spacing: 1px;
+  }
+
+  .season-date {
+    font-size: $font-size-md;
+    color: $red;
+    font-weight: $font-weight-black;
+  }
+}
+.episodes-table {
+  overflow-y: auto;
+  .table-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 200px 150px;
+    background-color: $blue-tint;
+    color: $text-color;
+    font-weight: $font-weight-bold;
+    padding: $padding-md 0;
+    border-bottom: 2px solid $border-color;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    > div {
+      padding: 0 $padding-md;
+      text-align: left;
+    }
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 200px 150px;
+    padding: $padding-md 0;
+    border-bottom: 1px dashed $border-color;
+    transition: background-color 0.2s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $pink-tint;
+    }
+
+    > div {
+      padding: 0 $padding-md;
+      display: flex;
+      align-items: center;
+    }
+
+    .col-no {
+      font-weight: $font-weight-bold;
+      color: $orange;
+    }
+
+    .col-name {
+      font-weight: $font-weight-medium;
+      color: $text-color;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .col-date {
+      color: $text-sec-color;
+    }
+
+    .col-status {
+      font-weight: $font-weight-black;
+      &.status-released {
+        color: #4caf50;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.5px;
+      }
+
+      &.status-upcoming {
+        color: $orange;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $padding-md;
+  background-color: $blue-tint;
+  border-top: 2px solid $border-color;
+
+  .page-indicator {
+    font-size: $font-size-md;
+    color: $text-color;
+    padding: $padding-xs $padding-md;
+    border-radius: 4px;
+    border: 1px solid $border-color;
+    font-weight: $font-weight-medium;
+  }
+
+  .retro-button {
+    padding: $padding-sm $padding-lg;
+    background-color: $blue;
+    color: $white;
+    border: 2px solid $border-color;
+    border-radius: 6px;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease,
+      box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 0 $blue, 0 5px 5px rgba(0, 0, 0, 0.3);
+
+    &:hover:not(.disabled) {
+      background-color: $blue;
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 $blue, 0 3px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active:not(.disabled) {
+      transform: translateY(4px);
+      box-shadow: none;
+    }
+
+    &.disabled {
+      background-color: $gray;
+      color: $white;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+      opacity: 0.7;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+    gap: $gap-xs;
+  }
+
+  .episodes-table {
+    .table-header {
+      grid-template-columns: auto;
+    }
+    .table-row {
+      grid-template-columns: auto;
+
+      .col-name {
+        white-space: normal;
+        overflow: hidden;
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-overflow: unset;
+      }
+    }
+  }
+}

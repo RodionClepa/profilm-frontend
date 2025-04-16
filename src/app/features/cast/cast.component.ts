@@ -1,9 +1,9 @@
 import { Component, input, OnInit } from '@angular/core';
-import { MovieCast } from '../../shared/types/movie-details.type';
 import { CommonModule } from '@angular/common';
 import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
 import { NO_IMAGE_PATH } from '../../shared/constants/general.constants';
 import { ROUTES_TOKENS } from '../../shared/constants/routes-token.constants';
+import { CastResponse } from '../../shared/types/credits.type';
 
 @Component({
   selector: 'app-cast',
@@ -12,7 +12,7 @@ import { ROUTES_TOKENS } from '../../shared/constants/routes-token.constants';
   styleUrl: './cast.component.scss'
 })
 export class CastComponent implements OnInit {
-  cast = input<MovieCast[]>([]);
+  cast = input<CastResponse[]>([]);
   swiperCards: SwiperCard[] = [];
 
   ngOnInit() {

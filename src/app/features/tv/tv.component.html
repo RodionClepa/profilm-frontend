@@ -1,37 +1,32 @@
-@if(movie) {
+@if(tv) {
 <main>
   <div class="film-container bg-color-transition pink-tint-gradient">
     <div class="film-poster">
-      <img [src]="movie.poster" [alt]="movie.title + ' poster'" />
+      <img [src]="tv.poster" [alt]="tv.title + ' poster'" />
     </div>
     <div class="film-info">
-      <h2>{{ movie.title }}</h2>
-      <p class="release-date">{{ movie.releaseDate | date : "MMM d, y" }}</p>
+      <h2>{{ tv.title }}</h2>
+      <p class="release-date">{{ tv.releaseDate | date : "MMM d, y" }}</p>
       <ul class="genres">
-        @for (genre of movie.genres; track genre.id) {
+        @for (genre of tv.genres; track genre.id) {
         <li>{{ genre.name }}</li>
         }
       </ul>
-      <p class="runtime">Runtime: {{ movie.runtime | formatRuntime }}</p>
-      <p class="budget">
-        Budget: {{ movie.budget | currency : "USD" : "symbol" }}
-      </p>
-      <p class="revenue">
-        Revenue: {{ movie.revenue | currency : "USD" : "symbol" }}
-      </p>
-      @if(movie.tagline) {
-      <p class="tagline">“{{ movie.tagline }}”</p>
+      <p class="budget">Budget:</p>
+      <p class="revenue">Revenue:</p>
+      @if(tv.tagline) {
+      <p class="tagline">“{{ tv.tagline }}”</p>
       }
-      <p class="overview">{{ movie.overview }}</p>
+      <p class="overview">{{ tv.overview }}</p>
       <div class="ratings">
         <div class="numbers">
-          <p>⭐ Rating: {{ movie.voteAverage | number : "1.1-1" }}/10</p>
-          <p>🗳️ Votes: {{ movie.voteCount | number }}</p>
+          <p>⭐ Rating: {{ tv.voteAverage | number : "1.1-1" }}/10</p>
+          <p>🗳️ Votes: {{ tv.voteCount | number }}</p>
         </div>
-        <app-rating-bar [rating]="movie.voteAverage * 10"></app-rating-bar>
+        <app-rating-bar [rating]="tv.voteAverage * 10"></app-rating-bar>
       </div>
-      <p class="adult" [ngClass]="{ 'adult-true': movie.adult }">
-        {{ movie.adult ? "Adult Content" : "General Audience" }}
+      <p class="adult" [ngClass]="{ 'adult-true': tv.adult }">
+        {{ tv.adult ? "Adult Content" : "General Audience" }}
       </p>
     </div>
   </div>
@@ -44,6 +39,13 @@
       [class.active]="openTab() === TAB_TOKEN.WATCH"
     >
       Watch
+    </button>
+    <button
+      (click)="setActiveTab(TAB_TOKEN.AIR_DATES)"
+      role="tab"
+      [class.active]="openTab() === TAB_TOKEN.AIR_DATES"
+    >
+      Air Dates
     </button>
     <button
       (click)="setActiveTab(TAB_TOKEN.TRAILER)"
@@ -77,15 +79,17 @@
   @defer {
   <div>
     @switch (openTab()) { @case (TAB_TOKEN.WATCH) {
-    <app-player [filmId]="movie.id"></app-player>
+    <app-player [filmId]="tv.id"></app-player>
     } @case (TAB_TOKEN.TRAILER) {
-    <app-trailer [videos]="movie.videos"></app-trailer>
+    <app-trailer [videos]="tv.videos"></app-trailer>
     } @case (TAB_TOKEN.EXTRAS) {
-    <app-gallery [images]="movie.images"></app-gallery>
+    <app-gallery [images]="tv.images"></app-gallery>
     } @case (TAB_TOKEN.CAST) {
-    <app-cast [cast]="movie.cast"></app-cast>
+    <app-cast [cast]="tv.cast"></app-cast>
     } @case(TAB_TOKEN.REVIEW) {
-    <app-reviews [reviews]="movie.reviews.results"></app-reviews>
+    <app-reviews [reviews]="tv.reviews.results"></app-reviews>
+    } @case(TAB_TOKEN.AIR_DATES) {
+    <app-air-dates [airDates]="tv.seasonsEpisodes"></app-air-dates>
     } }
   </div>
   } @placeholder {
@@ -95,12 +99,12 @@
   </div>
   }
 </section>
-<section class="purple-section bg-color-transition">
-  <h2>Similar Movies</h2>
+<section class="pink-section bg-color-transition">
+  <h2>Similar TV Series</h2>
   <app-swiper-horizontal-cards
     [cardList]="recommendations"
-    [scrollbarColor]="'var(--purple)'"
-    [navigationColor]="'var(--purple)'"
+    [scrollbarColor]="'var(--pink)'"
+    [navigationColor]="'var(--pink)'"
   ></app-swiper-horizontal-cards>
 </section>
 } @else {

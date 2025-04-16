@@ -1,54 +1,10 @@
+import { CastResponse, MovieCrew } from "./credits.type";
 import { Genre } from "./genre.type";
+import { ImageResponse } from "./image.type";
 import { Movie } from "./movie-tv.type";
 import { ProductionCompany } from "./production.type";
-
-export interface MovieImage {
-  filePath: string
-  voteAverage: number;
-  voteCount: number;
-}
-
-export interface MovieReview {
-  id: string;
-  author: string;
-  avatarPath: string;
-  rating: number | null;
-  content: string;
-}
-
-export interface MovieReviewsResult {
-  page: number;
-  results: MovieReview[];
-  totalPages: number;
-  totalResults: number;
-}
-
-export interface MovieVideo {
-  id: string;
-  name: string;
-  official: boolean;
-  link: string;
-}
-
-export interface MovieCrew {
-  adult: boolean;
-  gender: number;
-  id: number;
-  name: string;
-  popularity: number;
-  profilePath: string | null;
-  job: string;
-}
-
-export interface MovieCast {
-  adult: boolean;
-  gender: number;
-  id: number;
-  name: string;
-  character: string;
-  profilePath: string | null;
-  order: number;
-}
+import { ReviewsResult } from "./reviews.type";
+import { VideoResponse } from "./video.type";
 
 export interface MovieDetailsResponse {
   id: number;
@@ -67,11 +23,11 @@ export interface MovieDetailsResponse {
   tagline: string;
   runtime: number;
   productionCompanies: ProductionCompany[];
-  images: MovieImage[];
-  reviews: MovieReviewsResult;
-  videos: MovieVideo[];
+  images: ImageResponse[];
+  reviews: ReviewsResult;
+  videos: VideoResponse[];
   director: MovieCrew | null;
   producer: MovieCrew | null;
-  cast: MovieCast[];
+  cast: CastResponse[];
   recommendations: Movie[];
 }

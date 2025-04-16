@@ -1,7 +1,7 @@
 import { Component, Input, input, OnInit } from '@angular/core';
-import { MovieReview } from '../../shared/types/movie-details.type';
+import { Review } from '../../shared/types/reviews.type';
 
-interface ReviewFormat extends MovieReview {
+interface ReviewFormat extends Review {
   stars: number[];
 }
 
@@ -12,7 +12,7 @@ interface ReviewFormat extends MovieReview {
   styleUrl: './reviews.component.scss'
 })
 export class ReviewsComponent implements OnInit {
-  reviews = input<MovieReview[]>([]);
+  reviews = input<Review[]>([]);
   formattedReviews: ReviewFormat[] = [];
 
   ngOnInit() {

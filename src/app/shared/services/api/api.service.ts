@@ -43,4 +43,8 @@ export class ApiService {
   public movieById(id: number): string {
     return `${this.api()}/movies/${id}`;
   }
+
+  public tvById(id: number): string {
+    return `${this.api()}/tv/${id}`;
+  }
 }
