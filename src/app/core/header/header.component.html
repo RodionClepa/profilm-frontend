@@ -4,6 +4,37 @@
       <a [routerLink]="['/']">Profilm</a>
     </div>
     <div class="navigation-wrapper">
+      <nav>
+        @for(nav of headerNavigation; track $index) {
+        <div class="nav-category">
+          <a
+            class="main-nav"
+            [routerLink]="['/']"
+            (keydown.space)="onSpacePress($event)"
+            (focusin)="removeTabIndex()"
+            >Movies</a
+          >
+          <div class="nav-additional">
+            @for(category of nav.categories; track category.categoryTitle) {
+            <div class="nav-group">
+              <p class="title-group">Year</p>
+              <ol>
+                @for(subcategory of category.subcategories; track
+                subcategory.title) {
+                <li>
+                  <a [routerLink]="subcategory.link" [tabIndex]="tabIndex">{{
+                    subcategory.title
+                  }}</a>
+                </li>
+                }
+              </ol>
+            </div>
+            }
+          </div>
+        </div>
+        }
+        <a [routerLink]="['/']">TV series</a>
+      </nav>
       <div class="theme-toggle">
         @if (currentColorTheme === themes.LIGHT) {
         <button (click)="onThemeChange(themes.DARK)">
@@ -37,10 +68,6 @@
         </button>
         }
       </div>
-      <nav>
-        <a [routerLink]="['/']">Movies</a>
-        <a [routerLink]="['/']">TV series</a>
-      </nav>
       <a [routerLink]="['/']">Profile</a>
     </div>
   </header>

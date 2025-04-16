@@ -13,56 +13,24 @@ main {
 }
 
 .pink-section {
-  background: linear-gradient(
-    0deg,
-    transparent 0,
-    $pink-tint 70%,
-    $pink-tint 100%
-  );
-  border: 1px solid $pink;
-
   h2 {
     color: $pink;
   }
 }
 
 .orange-section {
-  background: linear-gradient(
-    0deg,
-    transparent 0,
-    $orange-tint 70%,
-    $orange-tint 100%
-  );
-  border: 1px solid $orange;
-
   h2 {
     color: $orange;
   }
 }
 
 .red-section {
-  background: linear-gradient(
-    0deg,
-    transparent 0,
-    $red-tint 70%,
-    $red-tint 100%
-  );
-  border: 1px solid $red;
-
   h2 {
     color: $red;
   }
 }
 
 .blue-section {
-  background: linear-gradient(
-    0deg,
-    transparent 0,
-    $blue-tint 70%,
-    $blue-tint 100%
-  );
-  border: 1px solid $blue;
-
   h2 {
     color: $blue;
   }

@@ -15,7 +15,10 @@ header {
   width: $max-content-width;
 
   .logo-container {
-    flex: 1;
+    img {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   .navigation-wrapper {
@@ -47,13 +50,41 @@ header {
 
     nav {
       display: inline-flex;
-    }
 
-    a {
-      text-decoration: none;
-      color: $text-color;
-      padding: $padding-md;
-      border-left: 1px solid $border-color;
+      .nav-category {
+        position: relative;
+        display: flex;
+
+        .main-nav {
+          text-decoration: none;
+          color: $text-color;
+          padding: $padding-md;
+          border-left: 1px solid $border-color;
+        }
+
+        .nav-additional {
+          display: none;
+          flex-wrap: wrap;
+          position: absolute;
+          width: 70vw;
+          top: 100%;
+          left: 0;
+          background-color: aqua;
+          gap: $gap-md;
+
+          ol {
+            list-style: none;
+            min-width: 120px;
+          }
+        }
+
+        &:hover,
+        &:focus-within {
+          .nav-additional {
+            display: flex;
+          }
+        }
+      }
     }
   }
 }
