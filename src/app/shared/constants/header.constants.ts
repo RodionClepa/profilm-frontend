@@ -83,4 +83,86 @@ export const headerNavigation: HeaderNavigationItem[] = [
       }
     ]
   },
+
+  {
+    title: "TV series",
+    link: `/${ROUTES_TOKENS.TVS}`,
+    categories: [
+      {
+        categoryTitle: "Genre",
+        subcategories: [
+          {
+            title: "Action & Adventure",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.GENRE}=action & adventure`
+          },
+          {
+            title: "Animation",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.GENRE}=animation`
+          },
+          {
+            title: "Comedy",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.GENRE}=comedy`
+          },
+          {
+            title: "Crime",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.GENRE}=crime`
+          },
+          {
+            title: "Mystery",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.GENRE}=mystery`
+          }
+        ]
+      },
+      {
+        categoryTitle: "Years",
+        subcategories: [
+          {
+            title: "Series of 2025",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.YEAR}=2025`
+          },
+          {
+            title: "Series of 2024",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.YEAR}=2024`
+          },
+          {
+            title: "Series of 2023",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.YEAR}=2023`
+          },
+          {
+            title: "Series of 2022",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.YEAR}=2022`
+          },
+          {
+            title: "Series of 2021",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.YEAR}=2021`
+          },
+        ]
+      },
+      {
+        categoryTitle: "Country",
+        subcategories: [
+          {
+            title: "American",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.COUNTRY}=US`
+          },
+          {
+            title: "Russian",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.COUNTRY}=RU`
+          },
+          {
+            title: "German",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.COUNTRY}=DE`
+          },
+          {
+            title: "France",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.COUNTRY}=FR`
+          },
+          {
+            title: "Brazil",
+            link: `/${ROUTES_TOKENS.TVS}?${PARAM_TOKENS.COUNTRY}=BR`
+          },
+        ]
+      }
+    ]
+  },
 ] as const;

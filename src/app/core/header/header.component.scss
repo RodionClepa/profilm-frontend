@@ -15,9 +15,11 @@ header {
   width: $max-content-width;
 
   .logo-container {
-    img {
-      width: 32px;
-      height: 32px;
+    a {
+      img {
+        width: 160px;
+        height: 100%;
+      }
     }
   }
 
@@ -64,23 +66,27 @@ header {
 
         .nav-additional {
           display: none;
-          flex-wrap: wrap;
           position: absolute;
-          width: 70vw;
+          width: 60vw;
           top: 100%;
           left: 0;
-          background-color: aqua;
-          gap: $gap-md;
 
-          ol {
-            list-style: none;
-            min-width: 120px;
+          .nav-content {
+            display: flex;
+            gap: $gap-md;
+            flex-wrap: wrap;
+
+            width: fit-content;
+            background-color: aqua;
+            max-width: 100%;
+
+            ol {
+              list-style: none;
+              min-width: 120px;
+            }
           }
-        }
 
-        &:hover,
-        &:focus-within {
-          .nav-additional {
+          &.active {
             display: flex;
           }
         }

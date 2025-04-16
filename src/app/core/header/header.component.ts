@@ -15,6 +15,10 @@ export class HeaderComponent implements OnInit {
 
   headerNavigation = headerNavigation;
 
+  openedTab: string | null = "";
+
+  tabIndex: number = -1;
+
   constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {
@@ -27,13 +31,35 @@ export class HeaderComponent implements OnInit {
     this.themeService.setTheme(colorTheme);
   }
 
-  tabIndex: number = -1;
+  openNav(navName: string) {
+    this.openedTab = navName;
+  }
+
+  closeNav() {
+    console.log("closeNav")
+    this.openedTab = null;
+  }
+
   onSpacePress(event: Event) {
     event.preventDefault();
     this.tabIndex = this.tabIndex === 0 ? -1 : 0;
   }
 
-  removeTabIndex() {
+  onFocusIn(navName: string) {
+    this.openedTab = navName;
     this.tabIndex = -1;
+  }
+
+  onFocusOut() {
+    if (this.tabIndex === -1) this.openedTab = null;
+  }
+
+  onCategory(event: FocusEvent) {
+    const navCategory = event.currentTarget as HTMLElement;
+    const relatedTarget = event.relatedTarget as Node;
+
+    if (!navCategory.contains(relatedTarget)) {
+      this.closeNav();
+    }
   }
 }

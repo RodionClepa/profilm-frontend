@@ -2,6 +2,7 @@ export const ROUTES_TOKENS = {
   MOVIE: 'movie',
   MOVIES: 'movies',
   TV: 'tv',
+  TVS: 'tvs',
   DETAILS: 'details',
   NOT_FOUND: 'not-found',
   PERSON: 'person'

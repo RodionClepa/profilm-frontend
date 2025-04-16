@@ -1,39 +1,48 @@
 <div class="wrapper bg-color-transition">
   <header>
     <div class="logo-container">
-      <a [routerLink]="['/']">Profilm</a>
+      <a [routerLink]="['/']"
+        ><img src="assets/images/logo.svg" alt="logo Profilm"
+      /></a>
     </div>
     <div class="navigation-wrapper">
       <nav>
         @for(nav of headerNavigation; track $index) {
-        <div class="nav-category">
+        <div
+          class="nav-category"
+          (mouseenter)="openNav(nav.title)"
+          (mouseleave)="closeNav()"
+          (focusout)="onCategory($event)"
+        >
           <a
             class="main-nav"
-            [routerLink]="['/']"
+            [routerLink]="[nav.link]"
             (keydown.space)="onSpacePress($event)"
-            (focusin)="removeTabIndex()"
-            >Movies</a
+            (focusin)="onFocusIn(nav.title)"
+            (focusout)="onFocusOut()"
+            >{{ nav.title }}</a
           >
-          <div class="nav-additional">
-            @for(category of nav.categories; track category.categoryTitle) {
-            <div class="nav-group">
-              <p class="title-group">Year</p>
-              <ol>
-                @for(subcategory of category.subcategories; track
-                subcategory.title) {
-                <li>
-                  <a [routerLink]="subcategory.link" [tabIndex]="tabIndex">{{
-                    subcategory.title
-                  }}</a>
-                </li>
-                }
-              </ol>
+          <div class="nav-additional" [class.active]="nav.title === openedTab">
+            <div class="nav-content">
+              @for(category of nav.categories; track category.categoryTitle) {
+              <div class="nav-group">
+                <p class="title-group">Year</p>
+                <ol>
+                  @for(subcategory of category.subcategories; track
+                  subcategory.title) {
+                  <li>
+                    <a [routerLink]="subcategory.link" [tabIndex]="tabIndex">{{
+                      subcategory.title
+                    }}</a>
+                  </li>
+                  }
+                </ol>
+              </div>
+              }
             </div>
-            }
           </div>
         </div>
         }
-        <a [routerLink]="['/']">TV series</a>
       </nav>
       <div class="theme-toggle">
         @if (currentColorTheme === themes.LIGHT) {
