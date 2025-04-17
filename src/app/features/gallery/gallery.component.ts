@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, effect, ElementRef, Inject, input, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, Inject, input, PLATFORM_ID, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ImageResponse } from '../../shared/types/image.type';
 
@@ -22,12 +22,6 @@ export class GalleryComponent implements AfterViewInit {
       }
     })
   }
-
-  // ngOnInit() {
-  //   if (this.images && this.images().length > 0) {
-  //     this.selectedImage = this.images()[0];
-  //   }
-  // }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId))
