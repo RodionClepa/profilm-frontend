@@ -199,33 +199,6 @@
   background-color: $red;
 }
 
-.retro-empty-state {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-}
-
-.retro-empty-frame {
-  padding: $padding-xl;
-  border: 3px dashed $border-color;
-  border-radius: 8px;
-  text-align: center;
-  background-color: $bg-color;
-}
-
-.retro-empty-icon {
-  font-size: $font-size-xxxl;
-  color: $text-sec-color;
-  margin-bottom: $gap-md;
-}
-
-.retro-empty-text {
-  font-size: $font-size-md;
-  color: $text-color;
-  margin: 0;
-}
-
 @media (min-width: 768px) {
   .main-image-container::after {
     content: "";
@@ -261,7 +234,6 @@
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 767px) {
   .retro-gallery-header {
     flex-direction: column;

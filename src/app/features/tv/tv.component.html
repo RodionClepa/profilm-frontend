@@ -81,11 +81,11 @@
     @switch (openTab()) { @case (TAB_TOKEN.WATCH) {
     <app-player [filmId]="tv.id"></app-player>
     } @case (TAB_TOKEN.TRAILER) {
-    <app-trailer [videos]="tv.videos"></app-trailer>
+    <app-trailer [trailers]="formattedVideos"></app-trailer>
     } @case (TAB_TOKEN.EXTRAS) {
     <app-gallery [images]="tv.images"></app-gallery>
     } @case (TAB_TOKEN.CAST) {
-    <app-cast [cast]="tv.cast"></app-cast>
+    <app-cast [cast]="cast"></app-cast>
     } @case(TAB_TOKEN.REVIEW) {
     <app-reviews [reviews]="tv.reviews.results"></app-reviews>
     } @case(TAB_TOKEN.AIR_DATES) {
@@ -95,7 +95,7 @@
   } @placeholder {
   <div class="loading-retro">
     <app-loader></app-loader>
-    <p>Loading Gallery...</p>
+    <p>Loading Data...</p>
   </div>
   }
 </section>

@@ -16,10 +16,8 @@ export class ThemeService {
   private defaultTheme: Theme = Theme.SYSTEM;
   private defaultColorTheme: Theme = Theme.DARK;
   private themeSubject = new BehaviorSubject<Theme>(this.defaultTheme);
-  private themeColor = new BehaviorSubject<Theme>(this.defaultColorTheme);
 
   theme$ = this.themeSubject.asObservable();
-  themeColor$ = this.themeColor.asObservable();
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.initTheme();
@@ -32,7 +30,6 @@ export class ThemeService {
 
       if (savedTheme && Object.values(Theme).includes(savedTheme)) {
         this.themeSubject.next(savedTheme);
-        this.themeColor.next(savedTheme);
         this.applyTheme(savedTheme);
       } else {
         this.applyTheme(this.defaultTheme);
@@ -46,7 +43,6 @@ export class ThemeService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.storageKey, theme);
       this.themeSubject.next(theme);
-      this.themeColor.next(theme);
       this.applyTheme(theme);
     }
   }
@@ -75,7 +71,6 @@ export class ThemeService {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     html.classList.remove('light-theme', 'dark-theme');
     html.classList.add(prefersDark ? 'dark-theme' : 'light-theme');
-    this.themeColor.next(prefersDark ? Theme.DARK : Theme.LIGHT);
   }
 
   private handleSystemThemeChanges(): void {

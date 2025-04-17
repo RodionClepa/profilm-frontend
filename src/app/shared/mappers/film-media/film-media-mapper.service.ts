@@ -6,13 +6,16 @@ import { PromoCard } from '../../../features/landing/promo-slider/promo-slider.c
 import { ROUTES_TOKENS } from '../../constants/routes-token.constants';
 import { TVSeasonDetails } from '../../types/tv-details.type';
 import { AirDateSeason } from '../../../features/air-dates/air-dates.component';
+import { VideoResponse } from '../../types/video.type';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { TrailerVideo } from '../../../features/trailer/trailer.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmMediaMapperService {
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   public movieToSwipperCard(movie: Movie): SwiperCard {
     const formattedReleaseDate = formatDate(movie.releaseDate, 'MMM d, y', 'en-US');
@@ -65,5 +68,17 @@ export class FilmMediaMapperService {
         };
       }).sort((a, b) => new Date(b.airDate).getTime() - new Date(a.airDate).getTime())
     };
+  }
+
+  public videoToTrailer(videos: VideoResponse[]): TrailerVideo[] {
+    return videos.map((video) => ({
+      ...video,
+      youtubeUrl: this.getSafeUrl(video.link)
+    }))
+  }
+
+  private getSafeUrl(link: string): SafeResourceUrl {
+    const embedUrl = `https://www.youtube.com/embed/${link}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }

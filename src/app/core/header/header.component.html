@@ -1,47 +1,102 @@
 <div class="wrapper bg-color-transition">
   <header>
-    <div class="logo-container">
-      <a [routerLink]="['/']">Profilm</a>
-    </div>
-    <div class="navigation-wrapper">
-      <div class="theme-toggle">
-        @if (currentColorTheme === themes.LIGHT) {
-        <button (click)="onThemeChange(themes.DARK)">
-          <svg
-            class="icon"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-        </button>
-        } @else {
-        <button (click)="onThemeChange(themes.LIGHT)">
-          <svg
-            class="icon"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="12" cy="12" r="5" fill="white" />
-            <path
-              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-              stroke="white"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </button>
-        }
+    <div class="left-part">
+      <div class="logo-container">
+        <a [routerLink]="['/']"
+          ><img src="assets/images/logo.svg" alt="logo Profilm"
+        /></a>
       </div>
       <nav>
-        <a [routerLink]="['/']">Movies</a>
-        <a [routerLink]="['/']">TV series</a>
+        @for(nav of headerNavigation; track $index) {
+        <div
+          class="nav-category"
+          (mouseenter)="openNav(nav.title)"
+          (mouseleave)="closeNav()"
+          (focusout)="onCategory($event)"
+        >
+          <a
+            class="main-nav"
+            [routerLink]="[nav.link]"
+            (keydown.space)="onSpacePress($event)"
+            (focusin)="onFocusIn(nav.title)"
+            (focusout)="onFocusOut()"
+            >{{ nav.title }}</a
+          >
+          <div class="nav-additional" [class.active]="nav.title === openedTab">
+            <div class="nav-content">
+              @for(category of nav.categories; track category.categoryTitle) {
+              <div class="nav-group">
+                <p class="title-group">{{ category.categoryTitle }}</p>
+                <ol>
+                  @for(subcategory of category.subcategories; track
+                  subcategory.title) {
+                  <li>
+                    <a
+                      [routerLink]="subcategory.link"
+                      [queryParams]="subcategory.queryParams"
+                      [tabIndex]="tabIndex"
+                      >{{ subcategory.title }}</a
+                    >
+                  </li>
+                  }
+                </ol>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+        }
       </nav>
-      <a [routerLink]="['/']">Profile</a>
+    </div>
+    <div class="right-part">
+      <app-theme-selector></app-theme-selector>
+      <button class="hamburger-icon" (click)="openSideBar()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="3"
+          stroke="var(--pink)"
+          class="size-6"
+          width="24"
+          height="24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </button>
+      <!-- <a [routerLink]="['/']">Profile</a> -->
     </div>
   </header>
+</div>
+
+<div id="myNav" class="overlay" [class.active]="sidebar">
+  <button class="close-btn" (click)="closeSidebar()">
+    <svg
+      stroke="var(--pink)"
+      class="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="3"
+      width="24"
+      height="24"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18 18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+  <div class="overlay-content">
+    <a [routerLink]="'/'" (click)="closeSidebar()">Main Page</a>
+    @for(nav of headerNavigation; track $index) {
+    <a [routerLink]="nav.link" (click)="closeSidebar()">{{ nav.title }}</a>
+    }
+  </div>
 </div>

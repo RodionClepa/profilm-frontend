@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 import { TVSeasonDetails } from '../../shared/types/tv-details.type';
 import { CommonModule } from '@angular/common';
 import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
@@ -35,7 +35,7 @@ interface AirDatePage {
   templateUrl: './air-dates.component.html',
   styleUrl: './air-dates.component.scss'
 })
-export class AirDatesComponent implements OnInit {
+export class AirDatesComponent {
   airDates = input<TVSeasonDetails[]>([]);
 
   readonly episodesPerPage = 10;
@@ -45,23 +45,23 @@ export class AirDatesComponent implements OnInit {
   activeSeason: AirDateSeason | null = null;
   today = new Date();
 
-  constructor(private filmMapper: FilmMediaMapperService) { }
+  constructor(private filmMapper: FilmMediaMapperService) {
+    effect(() => {
+      this.sortedAirDates = this.airDates()
+        .map(this.filmMapper.tvSeasonToAirDate)
+        .sort((a, b) => new Date(b.airDate).getTime() - new Date(a.airDate).getTime());
 
-  ngOnInit(): void {
-    this.sortedAirDates = this.airDates()
-      .map(this.filmMapper.tvSeasonToAirDate)
-      .sort((a, b) => new Date(b.airDate).getTime() - new Date(a.airDate).getTime());
-
-    this.sortedAirDates.forEach(season => {
-      this.currentPages[season.id] = {
-        page: 1,
-        startIndex: 0,
-        endIndex: this.episodesPerPage,
-        episodes: season.episodes.slice(0, this.episodesPerPage),
-        totalPages: Math.ceil(season.episodes.length / this.episodesPerPage)
-      }
-    });
-    if (this.sortedAirDates.length > 0) this.activeSeason = this.sortedAirDates[0]
+      this.sortedAirDates.forEach(season => {
+        this.currentPages[season.id] = {
+          page: 1,
+          startIndex: 0,
+          endIndex: this.episodesPerPage,
+          episodes: season.episodes.slice(0, this.episodesPerPage),
+          totalPages: Math.ceil(season.episodes.length / this.episodesPerPage)
+        }
+      });
+      if (this.sortedAirDates.length > 0) this.activeSeason = this.sortedAirDates[0]
+    })
   }
 
   setActiveSeason(season: AirDateSeason): void {

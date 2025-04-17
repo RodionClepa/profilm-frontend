@@ -19,9 +19,9 @@ export class LandingComponent implements OnInit {
 
   popularMovies: SwiperCard[] = [];
   popularTV: SwiperCard[] = [];
-  trendingMovies: SwiperCard[] = [];
+  trendingMovies: PromoCard[] = [];
   trendingTVs: SwiperCard[] = [];
-  upcomingMovies: PromoCard[] = [];
+  upcomingMovies: SwiperCard[] = [];
 
   ngOnInit() {
     this.filmMediaService.moviePopular({}).subscribe({
@@ -38,7 +38,7 @@ export class LandingComponent implements OnInit {
 
     this.filmMediaService.movieTrending({ timeWindow: TimeWindow.WEEK }).subscribe({
       next: (response: MovieResponse) => {
-        this.trendingMovies = response.results.map((movie) => this.filmMediaMapper.movieToSwipperCard(movie));
+        this.trendingMovies = response.results.map((movie) => this.filmMediaMapper.movieToPromoCard(movie));
       }
     });
 
@@ -50,7 +50,7 @@ export class LandingComponent implements OnInit {
 
     this.filmMediaService.movieUpcoming({ imageSize: posterSize.Large }).subscribe({
       next: (response: MovieResponse) => {
-        this.upcomingMovies = response.results.map((movie) => this.filmMediaMapper.movieToPromoCard(movie));
+        this.upcomingMovies = response.results.map((movie) => this.filmMediaMapper.movieToSwipperCard(movie));
       }
     });
   }

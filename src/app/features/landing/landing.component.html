@@ -1,4 +1,4 @@
-<app-promo-slider [filmList]="upcomingMovies"></app-promo-slider>
+<app-promo-slider [filmList]="trendingMovies"></app-promo-slider>
 <main>
   <section class="pink-section bg-color-transition">
     <h2>Popular Movies</h2>
@@ -19,9 +19,9 @@
   </section>
 
   <section class="red-section bg-color-transition">
-    <h2>Trending Movies of the Week</h2>
+    <h2>Upcoming Movies</h2>
     <app-swiper-horizontal-cards
-      [cardList]="trendingMovies"
+      [cardList]="upcomingMovies"
       [scrollbarColor]="'var(--red)'"
       [navigationColor]="'var(--red)'"
     ></app-swiper-horizontal-cards>

@@ -1,5 +1,5 @@
 <div class="video-container">
-  @for(video of formattedVideos; track video.id) {
+  @for(video of trailers(); track video.id) {
   <div class="video-card">
     <div class="crt-screen">
       <div class="video-wrapper">
@@ -11,7 +11,9 @@
         ></iframe>
       </div>
     </div>
-    <h3 class="video-title">{{ video.name }}</h3>
+    <h3 class="video-title" [title]="video.name">
+      {{ video.name | slice : 0 : 30 }}
+    </h3>
   </div>
   }
 </div>

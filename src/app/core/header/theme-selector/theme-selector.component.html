@@ -1,0 +1,43 @@
+<div class="theme-toggle" (focusout)="focusOutMenu($event)">
+  <button (focusin)="turnOnMenu()">
+    <img
+      class="icon"
+      [src]="`assets/icons/${currentTheme}-icon.svg`"
+      [alt]="`${currentTheme} mode icon`"
+    />
+  </button>
+  @if(isMenuOn) {
+  <div class="toggle-menu bg-color-transition">
+    <div class="button-wrapper">
+      <button (click)="onThemeChange(themes.DARK)">
+        <img
+          class="icon"
+          src="assets/icons/dark-icon.svg"
+          alt="Dark mode icon"
+        />
+        <p>Dark</p>
+      </button>
+    </div>
+    <div class="button-wrapper">
+      <button (click)="onThemeChange(themes.SYSTEM)">
+        <img
+          class="icon"
+          src="assets/icons/system-icon.svg"
+          alt="System mode icon"
+        />
+        <p>System</p>
+      </button>
+    </div>
+    <div class="button-wrapper">
+      <button (click)="onThemeChange(themes.LIGHT)">
+        <img
+          class="icon"
+          src="assets/icons/light-icon.svg"
+          alt="Light mode icon"
+        />
+        <p>Light</p>
+      </button>
+    </div>
+  </div>
+  }
+</div>
