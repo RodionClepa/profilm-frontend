@@ -11,5 +11,6 @@ export const ROUTES_TOKENS = {
 export const PARAM_TOKENS = {
   GENRE: "genre",
   YEAR: "year",
-  COUNTRY: "country"
+  COUNTRY: "country",
+  SORTBY: "sortBy"
 }

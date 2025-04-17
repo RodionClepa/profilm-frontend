@@ -1,0 +1,26 @@
+<footer>
+  <div class="footer-content">
+    <div class="navigation">
+      @for(nav of navigation; track $index) {
+      <div class="category-nav">
+        <a class="title-category" [routerLink]="nav.link">{{ nav.title }}</a>
+        <ul>
+          @for(subcategory of nav.subcategories; track $index) {
+          <li>
+            <a
+              [routerLink]="subcategory.link"
+              [queryParams]="subcategory.queryParams"
+              >{{ subcategory.title }}</a
+            >
+          </li>
+          }
+        </ul>
+      </div>
+      }
+    </div>
+    <div class="powered-by">
+      <p>Powered by: <a href="https://www.themoviedb.org/">TheMovieDb</a></p>
+      <p>Powered by: <a href="https://freedns.afraid.org/">FreeDNS</a></p>
+    </div>
+  </div>
+</footer>

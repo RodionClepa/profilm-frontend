@@ -1,16 +1,17 @@
 @use "variables" as *;
 
-.wrapper {
+header {
   display: flex;
   justify-content: space-around;
   top: 0;
   position: sticky;
   z-index: 101; // Movie player has z-index: 100
-  background-color: $bg-color;
+  background-color: $bg-color-tint;
   border-bottom: 1px solid $border-color;
+  width: 100%;
 }
 
-header {
+.header-content {
   display: flex;
   width: $max-content-width;
   justify-content: space-between;
@@ -103,37 +104,6 @@ header {
   }
 }
 
-@media only screen and (max-width: 768px) {
-  header {
-    .left-part {
-      nav {
-        display: none;
-      }
-    }
-
-    .right-part {
-      app-theme-selector {
-        display: none;
-      }
-
-      .hamburger-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: $padding-md;
-
-        img {
-          width: 24px;
-          height: 24px;
-        }
-      }
-    }
-  }
-}
-
 .overlay {
   height: 100%;
   width: 0;
@@ -181,6 +151,37 @@ header {
     &:hover,
     &:focus {
       color: $purple;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header-content {
+    .left-part {
+      nav {
+        display: none;
+      }
+    }
+
+    .right-part {
+      app-theme-selector {
+        display: none;
+      }
+
+      .hamburger-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: $padding-md;
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
     }
   }
 }

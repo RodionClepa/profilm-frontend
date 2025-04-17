@@ -15,6 +15,10 @@ html {
   transition-delay: 0 !important;
 }
 
+body:has(.overlay.active) {
+  overflow: hidden;
+}
+
 .bg-color-transition {
   transition: background-color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms,
     color cubic-bezier(0.68, -0.55, 0.27, 1.55) 420ms !important;
