@@ -1,6 +1,7 @@
 export interface Subcategory {
   title: string;
   link: string;
+  queryParams: { [key: string]: any };
 }
 
 export interface Category {

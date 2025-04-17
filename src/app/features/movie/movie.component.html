@@ -97,11 +97,20 @@
 </section>
 <section class="purple-section bg-color-transition">
   <h2>Similar Movies</h2>
+  @if (recommendations.length > 0) {
   <app-swiper-horizontal-cards
     [cardList]="recommendations"
     [scrollbarColor]="'var(--purple)'"
     [navigationColor]="'var(--purple)'"
   ></app-swiper-horizontal-cards>
+  } @else {
+  <div class="retro-empty-state">
+    <div class="retro-empty-frame">
+      <div class="retro-empty-icon">?</div>
+      <p class="retro-empty-text">No recommendations available</p>
+    </div>
+  </div>
+  }
 </section>
 } @else {
 <div class="loading-retro">

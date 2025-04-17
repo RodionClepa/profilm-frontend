@@ -1,42 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { Theme, ThemeService } from '../services/theme/theme.service';
 import { headerNavigation } from '../../shared/constants/header.constants';
+import { ThemeSelectorComponent } from "./theme-selector/theme-selector.component";
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink, ThemeSelectorComponent, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
-  currentColorTheme: Theme = Theme.SYSTEM;
-  themes = Theme;
+export class HeaderComponent {
 
   headerNavigation = headerNavigation;
 
   openedTab: string | null = "";
+  sidebar: boolean = false;
 
   tabIndex: number = -1;
-
-  constructor(private themeService: ThemeService) { }
-
-  ngOnInit(): void {
-    this.themeService.themeColor$.subscribe(color => {
-      this.currentColorTheme = color;
-    });
-  }
-
-  onThemeChange(colorTheme: Theme): void {
-    this.themeService.setTheme(colorTheme);
-  }
 
   openNav(navName: string) {
     this.openedTab = navName;
   }
 
   closeNav() {
-    console.log("closeNav")
     this.openedTab = null;
   }
 
@@ -61,5 +48,13 @@ export class HeaderComponent implements OnInit {
     if (!navCategory.contains(relatedTarget)) {
       this.closeNav();
     }
+  }
+
+  openSideBar() {
+    this.sidebar = true;
+  }
+
+  closeSidebar() {
+    this.sidebar = false;
   }
 }

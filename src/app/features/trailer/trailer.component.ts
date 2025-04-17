@@ -1,6 +1,7 @@
 import { Component, computed, input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { VideoResponse } from '../../shared/types/video.type';
+import { SlicePipe } from '@angular/common';
 
 interface TrailerVideo extends VideoResponse {
   youtubeUrl: SafeResourceUrl
@@ -8,7 +9,7 @@ interface TrailerVideo extends VideoResponse {
 
 @Component({
   selector: 'app-trailer',
-  imports: [],
+  imports: [SlicePipe],
   templateUrl: './trailer.component.html',
   styleUrl: './trailer.component.scss',
 })

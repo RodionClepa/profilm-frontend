@@ -13,6 +13,19 @@
 header {
   display: flex;
   width: $max-content-width;
+  justify-content: space-between;
+
+  .left-part {
+    display: flex;
+  }
+
+  .right-part {
+    display: flex;
+
+    .hamburger-icon {
+      display: none;
+    }
+  }
 
   .logo-container {
     a {
@@ -23,74 +36,147 @@ header {
     }
   }
 
-  .navigation-wrapper {
+  nav {
     display: inline-flex;
     font-size: $font-size-md;
     text-transform: uppercase;
+    font-weight: $font-weight-bold;
 
-    .theme-toggle {
-      border-left: 1px solid $border-color;
-      .icon {
-        width: 24px;
-        height: 24px;
-        margin: 10px;
-      }
-      .sun {
-        fill: $white;
-      }
-      .moon {
-        fill: #2c3e50;
+    .nav-category {
+      position: relative;
+      display: flex;
+
+      .main-nav {
+        text-decoration: none;
+        color: $text-color;
+        padding: $padding-md;
+        border-left: 1px solid $border-color;
       }
 
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        display: flex;
-      }
-    }
+      .nav-additional {
+        display: none;
+        position: absolute;
+        width: 60vw;
+        top: 100%;
+        left: 0;
 
-    nav {
-      display: inline-flex;
+        .nav-content {
+          display: flex;
+          gap: $gap-md;
+          flex-wrap: wrap;
 
-      .nav-category {
-        position: relative;
-        display: flex;
+          width: fit-content;
+          background-color: $bg-color;
+          max-width: 100%;
 
-        .main-nav {
-          text-decoration: none;
-          color: $text-color;
-          padding: $padding-md;
-          border-left: 1px solid $border-color;
-        }
+          ol {
+            list-style: none;
+            min-width: 120px;
 
-        .nav-additional {
-          display: none;
-          position: absolute;
-          width: 60vw;
-          top: 100%;
-          left: 0;
+            li {
+              a {
+                text-decoration: none;
+                color: $pink;
 
-          .nav-content {
-            display: flex;
-            gap: $gap-md;
-            flex-wrap: wrap;
-
-            width: fit-content;
-            background-color: aqua;
-            max-width: 100%;
-
-            ol {
-              list-style: none;
-              min-width: 120px;
+                &:hover {
+                  color: $purple;
+                }
+              }
             }
           }
+        }
 
-          &.active {
-            display: flex;
-          }
+        &.active {
+          display: flex;
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    .left-part {
+      nav {
+        display: none;
+      }
+    }
+
+    .right-part {
+      app-theme-selector {
+        display: none;
+      }
+
+      .hamburger-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: none;
+        border: none;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 102;
+  top: 0;
+  left: 0;
+  background-color: $bg-color;
+  overflow-x: hidden;
+  transition: width 0.5s ease;
+
+  &.active {
+    width: 100%;
+  }
+
+  .close-btn {
+    border: none;
+    background: none;
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    cursor: pointer;
+  }
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+
+  a {
+    padding: $padding-xs;
+    text-decoration: none;
+    font-size: $font-size-xxl;
+    color: $pink;
+    display: block;
+    transition: color 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: $purple;
+    }
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: $font-size-lg;
+  }
+  .overlay .closebtn {
+    top: 15px;
+    right: 35px;
   }
 }
