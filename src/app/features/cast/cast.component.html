@@ -1,3 +1,10 @@
-<app-swiper-horizontal-cards
-  [cardList]="swiperCards"
-></app-swiper-horizontal-cards>
+@if(cast().length) {
+<app-swiper-horizontal-cards [cardList]="cast()"></app-swiper-horizontal-cards>
+} @else {
+<div class="retro-empty-state">
+  <div class="retro-empty-frame">
+    <div class="retro-empty-icon">?</div>
+    <p class="retro-empty-text">No recommendations available</p>
+  </div>
+</div>
+}

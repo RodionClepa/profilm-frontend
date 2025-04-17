@@ -20,6 +20,7 @@ header {
   }
 
   .right-part {
+    border-left: 1px solid $border-color;
     display: flex;
 
     .hamburger-icon {
@@ -54,16 +55,23 @@ header {
       }
 
       .nav-additional {
-        display: none;
+        interpolate-size: allow-keywords;
         position: absolute;
         width: 60vw;
         top: 100%;
         left: 0;
+        display: flex;
+
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: height 0.3s ease, opacity 0.3s ease;
 
         .nav-content {
           display: flex;
           gap: $gap-md;
           flex-wrap: wrap;
+          padding: $padding-lg;
 
           width: fit-content;
           background-color: $bg-color;
@@ -87,7 +95,8 @@ header {
         }
 
         &.active {
-          display: flex;
+          height: auto;
+          opacity: 1;
         }
       }
     }
@@ -114,6 +123,8 @@ header {
         cursor: pointer;
         background: none;
         border: none;
+        padding: $padding-md;
+
         img {
           width: 24px;
           height: 24px;
@@ -144,7 +155,6 @@ header {
     position: absolute;
     top: 20px;
     right: 45px;
-    font-size: 60px;
     cursor: pointer;
   }
 }
@@ -164,19 +174,13 @@ header {
     display: block;
     transition: color 0.3s ease-in-out;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     &:hover,
     &:focus {
       color: $purple;
     }
-  }
-}
-
-@media screen and (max-height: 450px) {
-  .overlay a {
-    font-size: $font-size-lg;
-  }
-  .overlay .closebtn {
-    top: 15px;
-    right: 35px;
   }
 }

@@ -24,7 +24,9 @@
         (error)="handleImageError($event)"
       />
       <div class="content-film">
-        <p class="title" [title]="card.title">{{ card.title }}</p>
+        <p class="title" [title]="card.title">
+          {{ card.title }} id: {{ card.id }}
+        </p>
         <p class="date">{{ card.subTitle }}</p>
       </div>
     </a>

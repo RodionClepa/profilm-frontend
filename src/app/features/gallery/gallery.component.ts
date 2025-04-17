@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, input, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, Inject, input, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ImageResponse } from '../../shared/types/image.type';
 
@@ -8,20 +8,26 @@ import { ImageResponse } from '../../shared/types/image.type';
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'
 })
-export class GalleryComponent implements OnInit, AfterViewInit {
+export class GalleryComponent implements AfterViewInit {
   images = input<ImageResponse[]>([]);
   @ViewChild('thumbnailsContainer') thumbnailsContainer!: ElementRef;
 
   selectedImage: ImageResponse | null = null;
   currentIndex = 0;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
-
-  ngOnInit() {
-    if (this.images && this.images().length > 0) {
-      this.selectedImage = this.images()[0];
-    }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    effect(() => {
+      if (this.images && this.images().length > 0) {
+        this.selectedImage = this.images()[0];
+      }
+    })
   }
+
+  // ngOnInit() {
+  //   if (this.images && this.images().length > 0) {
+  //     this.selectedImage = this.images()[0];
+  //   }
+  // }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId))

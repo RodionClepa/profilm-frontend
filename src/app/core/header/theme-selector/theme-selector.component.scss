@@ -1,7 +1,6 @@
 @use "variables" as *;
 
 .theme-toggle {
-  border-left: 1px solid $border-color;
   position: relative;
 
   button {
@@ -29,9 +28,9 @@
         }
       }
 
-      &:first-child {
-        border-top: 1px solid $border-color;
-      }
+      // &:first-child {
+      //   border-top: 1px solid $border-color;
+      // }
     }
   }
 
