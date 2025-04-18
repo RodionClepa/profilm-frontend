@@ -13,7 +13,7 @@ This project is divided into two separate repositories:
 
 - [Node.js](https://nodejs.org/) ( ^18.19.1 || ^20.11.1 || ^22.0.0)
 - [npm](https://www.npmjs.com/)
-- [Angular CLI](https://angular.io/cli)
+- [Angular CLI](https://angular.dev/installation)
 - [Docker](https://www.docker.com/) and Docker Compose
 - [Git](https://git-scm.com/)
 - [Postgres](https://www.postgresql.org/download/)
