@@ -1,5 +1,5 @@
-<div class="wrapper bg-color-transition">
-  <header>
+<header class="wrapper bg-color-transition">
+  <div class="header-content">
     <div class="left-part">
       <div class="logo-container">
         <a [routerLink]="['/']"
@@ -70,8 +70,8 @@
       </button>
       <!-- <a [routerLink]="['/']">Profile</a> -->
     </div>
-  </header>
-</div>
+  </div>
+</header>
 
 <div id="myNav" class="overlay" [class.active]="sidebar">
   <button class="close-btn" (click)="closeSidebar()">

@@ -43,6 +43,7 @@ $gray: gray;
 
 // Light Theme Colors
 $background-light: #f1efe2;
+$background-light-tint: #dddac6;
 $text-primary-light: #353535;
 $text-secondary-light: #0d5853;
 $pink-light: #f063a4;
@@ -60,6 +61,7 @@ $skeleton-color-light: #e3e2de;
 
 // Dark Theme Colors
 $background-dark: #353535;
+$background-dark-tint: #3e3e3e;
 $text-primary-dark: #d5d5d5;
 $text-secondary-dark: #ddcc73;
 $pink-dark: #e6005c;
@@ -78,6 +80,7 @@ $skeleton-color-dark: #4f4f4f;
 // Theme mixins
 @mixin light-theme {
   --bgColor: #{$background-light};
+  --bgColorTint: #{$background-light-tint};
   --textColor: #{$text-primary-light};
   --textSecColor: #{$text-secondary-light};
   --borderColor: #{$border-light};
@@ -96,6 +99,7 @@ $skeleton-color-dark: #4f4f4f;
 
 @mixin dark-theme {
   --bgColor: #{$background-dark};
+  --bgColorTint: #{$background-dark-tint};
   --textColor: #{$text-primary-dark};
   --textSecColor: #{$text-secondary-dark};
   --borderColor: #{$border-dark};
@@ -131,6 +135,7 @@ $skeleton-color-dark: #4f4f4f;
 }
 
 $bg-color: var(--bgColor);
+$bg-color-tint: var(--bgColorTint);
 $text-color: var(--textColor);
 $text-sec-color: var(--textSecColor);
 $border-color: var(--borderColor);

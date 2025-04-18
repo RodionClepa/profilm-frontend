@@ -12,6 +12,12 @@
     border-radius: 8px;
     text-align: center;
     background-color: $bg-color;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .retro-empty-icon {
       font-size: $font-size-xxxl;
