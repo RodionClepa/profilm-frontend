@@ -21,11 +21,19 @@ header {
   }
 
   .right-part {
-    border-left: 1px solid $border-color;
     display: flex;
+
+    .search-icon {
+      border-left: 1px solid $border-color;
+      display: flex;
+    }
 
     .hamburger-icon {
       display: none;
+    }
+
+    app-theme-selector {
+      border-left: 1px solid $border-color;
     }
   }
 
@@ -175,6 +183,7 @@ header {
         cursor: pointer;
         background: none;
         border: none;
+        border-left: 1px solid $border-color;
         padding: $padding-md;
 
         img {
