@@ -12,11 +12,12 @@ import { TrailerComponent, TrailerVideo } from "../trailer/trailer.component";
 import { GalleryComponent } from "../gallery/gallery.component";
 import { CastComponent } from "../cast/cast.component";
 import { ReviewsComponent } from "../reviews/reviews.component";
-import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
+import { SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
 import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
 import { Subscription } from 'rxjs';
 import { EmptyContainerComponent } from "../../shared/components/empty-container/empty-container.component";
 import { NO_IMAGE_PATH } from '../../shared/constants/general.constants';
+import { CardMedia } from '../../shared/components/card-media/card-media.component';
 
 const TAB_TOKEN = {
   WATCH: 'watch',
@@ -41,8 +42,8 @@ export class MovieComponent implements OnInit, OnDestroy {
   openTab = signal<string | null>(null);
   validTabs = Object.values(TAB_TOKEN);
   readonly TAB_TOKEN = TAB_TOKEN;
-  recommendations: SwiperCard[] = [];
-  cast: SwiperCard[] = [];
+  recommendations: CardMedia[] = [];
+  cast: CardMedia[] = [];
   formattedVideos: TrailerVideo[] = [];
 
   private routeSub: Subscription | null = null;

@@ -9,7 +9,7 @@
   @if(isMenuOn) {
   <div class="toggle-menu bg-color-transition">
     <div class="button-wrapper">
-      <button (click)="onThemeChange(themes.DARK)">
+      <button (click)="onThemeChange(themes.DARK)" [tabIndex]="tabIndex">
         <img
           class="icon"
           src="assets/icons/dark-icon.svg"
@@ -19,7 +19,7 @@
       </button>
     </div>
     <div class="button-wrapper">
-      <button (click)="onThemeChange(themes.SYSTEM)">
+      <button (click)="onThemeChange(themes.SYSTEM)" [tabIndex]="tabIndex">
         <img
           class="icon"
           src="assets/icons/system-icon.svg"
@@ -29,7 +29,7 @@
       </button>
     </div>
     <div class="button-wrapper">
-      <button (click)="onThemeChange(themes.LIGHT)">
+      <button (click)="onThemeChange(themes.LIGHT)" [tabIndex]="tabIndex">
         <img
           class="icon"
           src="assets/icons/light-icon.svg"

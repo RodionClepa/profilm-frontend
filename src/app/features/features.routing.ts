@@ -22,6 +22,10 @@ export const featuresRoutes: Routes = [
       {
         path: `${ROUTES_TOKENS.TV}/:id`,
         component: TvComponent
+      },
+      {
+        path: `${ROUTES_TOKENS.SEARCH}`,
+        loadComponent: () => import('./search/search.component').then(m => m.SearchComponent)
       }
     ]
   },

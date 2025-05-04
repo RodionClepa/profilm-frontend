@@ -49,6 +49,23 @@
       </nav>
     </div>
     <div class="right-part">
+      <a class="search-icon" [routerLink]="['/', 'search']">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="var(--pink)"
+          class="size-6"
+          class="icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          />
+        </svg>
+      </a>
       <app-theme-selector></app-theme-selector>
       <button class="hamburger-icon" (click)="openSideBar()">
         <svg
@@ -98,5 +115,8 @@
     @for(nav of headerNavigation; track $index) {
     <a [routerLink]="nav.link" (click)="closeSidebar()">{{ nav.title }}</a>
     }
+    <div class="theme-wrapper">
+      <app-theme-selector></app-theme-selector>
+    </div>
   </div>
 </div>

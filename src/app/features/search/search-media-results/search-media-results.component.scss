@@ -1,0 +1,14 @@
+@use "variables" as *;
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+  gap: $gap-sm;
+}
+
+@media only screen and (max-width: 768px) {
+  .grid-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

@@ -5,12 +5,16 @@ export const ROUTES_TOKENS = {
   TVS: 'tvs',
   DETAILS: 'details',
   NOT_FOUND: 'not-found',
-  PERSON: 'person'
+  PERSON: 'person',
+  SEARCH: 'search'
 } as const;
 
 export const PARAM_TOKENS = {
   GENRE: "genre",
   YEAR: "year",
   COUNTRY: "country",
-  SORTBY: "sortBy"
-}
+  SORTBY: "sortBy",
+  SEARCH_FILM: "searchName",
+  SEARCH_TYPE: "type",
+  PAGE: "page"
+} as const;

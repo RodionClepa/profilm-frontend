@@ -10,6 +10,7 @@ import { Theme, ThemeService } from '../../services/theme/theme.service';
 export class ThemeSelectorComponent implements OnInit {
   currentTheme: Theme = Theme.SYSTEM;
   themes = Theme;
+  tabIndex: number = -1;
 
   isMenuOn: boolean = false;
 
@@ -22,28 +23,25 @@ export class ThemeSelectorComponent implements OnInit {
   }
 
   onThemeChange(colorTheme: Theme): void {
-    console.log("onThemeChange")
     this.themeService.setTheme(colorTheme);
     this.turnOffMenu();
   }
 
   toggleMenu() {
-    console.log("toggleMenu")
     this.isMenuOn = !this.isMenuOn;
   }
 
   turnOnMenu() {
-    console.log("turnOnMenu")
     this.isMenuOn = true;
+    this.tabIndex = 0;
   }
 
   turnOffMenu() {
-    console.log("turnOffMenu")
     this.isMenuOn = false;
+    this.tabIndex = -1;
   }
 
   focusOutMenu(event: FocusEvent) {
-    console.log("focusOutMenu")
     const navCategory = event.currentTarget as HTMLElement;
     const relatedTarget = event.relatedTarget as Node;
     if (!navCategory.contains(relatedTarget)) {

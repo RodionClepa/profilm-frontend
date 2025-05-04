@@ -21,11 +21,19 @@ header {
   }
 
   .right-part {
-    border-left: 1px solid $border-color;
     display: flex;
+
+    .search-icon {
+      border-left: 1px solid $border-color;
+      display: flex;
+    }
 
     .hamburger-icon {
       display: none;
+    }
+
+    app-theme-selector {
+      border-left: 1px solid $border-color;
     }
   }
 
@@ -114,8 +122,10 @@ header {
   background-color: $bg-color;
   overflow-x: hidden;
   transition: width 0.5s ease;
+  display: none;
 
   &.active {
+    display: block;
     width: 100%;
   }
 
@@ -153,6 +163,11 @@ header {
       color: $purple;
     }
   }
+
+  .theme-wrapper {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -175,6 +190,7 @@ header {
         cursor: pointer;
         background: none;
         border: none;
+        border-left: 1px solid $border-color;
         padding: $padding-md;
 
         img {

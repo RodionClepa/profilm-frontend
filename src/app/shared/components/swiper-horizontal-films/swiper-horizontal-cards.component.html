@@ -17,7 +17,8 @@
 >
   @for(card of cardList(); track card.id) {
   <swiper-slide>
-    <a class="slide-card" [routerLink]="card.link">
+    <app-card-media [card]="card"></app-card-media>
+    <!-- <a class="slide-card" [routerLink]="card.link">
       <img
         [src]="card.posterPath"
         [alt]="card.title + ' poster'"
@@ -29,7 +30,7 @@
         </p>
         <p class="date">{{ card.subTitle }}</p>
       </div>
-    </a>
+    </a> -->
   </swiper-slide>
   }
 </swiper-container>

@@ -1,0 +1,74 @@
+<div class="search-bar-wrapper">
+  <input
+    placeholder="Type..."
+    class="search-input bg-color-transition"
+    [(ngModel)]="searchInput"
+    (keydown.enter)="searchMedia()"
+  />
+  <button class="search-button" (click)="searchMedia()">Search</button>
+</div>
+
+<ul class="type-search">
+  <li>
+    <button
+      (click)="selectMediaType(searchMediaType.MOVIE)"
+      [class.active]="typeMedia === searchMediaType.MOVIE"
+    >
+      Movies
+    </button>
+  </li>
+  <li>
+    <button
+      (click)="selectMediaType(searchMediaType.TV)"
+      [class.active]="typeMedia === searchMediaType.TV"
+    >
+      TVs
+    </button>
+  </li>
+  <!-- <li><button>Persons</button></li> -->
+</ul>
+
+<main>
+  @if (!results) {
+  <p class="user-message">Type something</p>
+  } @else {
+  <app-search-media-results
+    [cardList]="results.results"
+  ></app-search-media-results>
+
+  <div class="pagination-controls">
+    <button
+      class="pagination-button bg-transition"
+      [disabled]="page() <= 1"
+      (click)="previousPage()"
+    >
+      << Previous
+    </button>
+
+    <div class="pagination-info">
+      <span>Page {{ page() }} of {{ results.totalPages }}</span>
+    </div>
+
+    <button
+      class="pagination-button bg-transition"
+      [disabled]="page() >= results.totalPages"
+      (click)="nextPage()"
+    >
+      Next >>
+    </button>
+  </div>
+
+  <div class="page-numbers">
+    @for (pageNum of pageNumbers(); track pageNum) { @if (pageNum > 0 && pageNum
+    <= results.totalPages) {
+    <button
+      class="page-number bg-transition"
+      [class.active]="pageNum === page()"
+      (click)="goToPage(pageNum)"
+    >
+      {{ pageNum }}
+    </button>
+    } }
+  </div>
+  }
+</main>
