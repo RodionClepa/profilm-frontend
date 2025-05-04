@@ -93,7 +93,6 @@ export class FilmMediaService {
   }
 
   searchMedia(type: string, { page = 1, includeAdult = false, imageSize = posterSize.extraLarge, searchName }: { page?: number, includeAdult?: boolean, imageSize?: number, searchName: string }): Observable<SearchMediaResults> {
-    console.log("searchMedia", type);
 
     if (type === SearchMediaType.MOVIE) {
       return this.searchMovies({
@@ -113,7 +112,6 @@ export class FilmMediaService {
       );
     }
     else if (type === SearchMediaType.TV) {
-      console.log("TV");
       return this.searchTVs({
         page: page,
         includeAdult: includeAdult,

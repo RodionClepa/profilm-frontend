@@ -15,5 +15,6 @@ export const PARAM_TOKENS = {
   COUNTRY: "country",
   SORTBY: "sortBy",
   SEARCH_FILM: "searchName",
-  SEARCH_TYPE: "type"
+  SEARCH_TYPE: "type",
+  PAGE: "page"
 } as const;

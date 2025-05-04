@@ -5,10 +5,15 @@
 
   .search-input {
     padding: $padding-sm;
-    background: $pink-tint;
+    background-color: $pink-tint;
     color: $text-color;
     border: 1px solid $border-color;
     flex: 1;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $blue;
+    }
   }
 
   .search-button {
@@ -56,4 +61,58 @@
 
 main {
   margin-top: $gap-sm;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: $gap-md;
+  gap: $gap-sm;
+
+  .pagination-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: $pink-tint;
+    cursor: pointer;
+    color: $text-color;
+    transition: background-color 0.3s;
+
+    &:hover:not(:disabled) {
+      background-color: $pink;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .pagination-info {
+    font-size: $font-size-sm;
+  }
+}
+
+.page-numbers {
+  display: flex;
+  justify-content: center;
+  gap: $gap-xs;
+  margin-top: $gap-sm;
+
+  .page-number {
+    color: $text-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: $padding-sm;
+
+    &:hover {
+      background-color: $pink;
+    }
+  }
 }

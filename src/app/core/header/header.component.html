@@ -115,5 +115,8 @@
     @for(nav of headerNavigation; track $index) {
     <a [routerLink]="nav.link" (click)="closeSidebar()">{{ nav.title }}</a>
     }
+    <div class="theme-wrapper">
+      <app-theme-selector></app-theme-selector>
+    </div>
   </div>
 </div>
