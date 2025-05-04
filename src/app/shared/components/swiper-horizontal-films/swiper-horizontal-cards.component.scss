@@ -10,40 +10,6 @@ swiper-container {
 swiper-slide {
   width: 180px;
   height: 280px;
-
-  .slide-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-decoration: none;
-
-    img {
-      flex: 1;
-      object-fit: cover;
-      width: 100%;
-      min-height: 0;
-      height: 230px;
-    }
-
-    .content-film {
-      font-size: $font-size-md;
-      font-weight: $font-weight-bold;
-      margin-top: 10px;
-
-      .title {
-        color: $text-color;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-      }
-
-      .date {
-        color: $text-sec-color;
-        text-align: center;
-      }
-    }
-  }
 }
 
 .placeholder {

@@ -47,4 +47,16 @@ export class ApiService {
   public tvById(id: number): string {
     return `${this.api()}/tv/${id}`;
   }
+
+  private searchMedia(): string {
+    return `${this.api()}/search`;
+  }
+
+  public searchMovies(): string {
+    return `${this.searchMedia()}/movies`;
+  }
+
+  public searchTVs(): string {
+    return `${this.searchMedia()}/tvs`;
+  }
 }

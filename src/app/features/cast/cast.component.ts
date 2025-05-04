@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
+import { SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
+import { CardMedia } from '../../shared/components/card-media/card-media.component';
 
 @Component({
   selector: 'app-cast',
@@ -9,5 +10,5 @@ import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/compone
   styleUrl: './cast.component.scss'
 })
 export class CastComponent {
-  cast = input<SwiperCard[]>([]);
+  cast = input<CardMedia[]>([]);
 }

@@ -1,0 +1,13 @@
+<a class="slide-card" [routerLink]="card().link">
+  <img
+    [src]="card().posterPath"
+    [alt]="card().title + ' poster'"
+    onerror="this.src='assets/images/no_image.jpeg'"
+  />
+  <div class="content-film">
+    <p class="title" [title]="card().title">
+      {{ card().title }} id: {{ card().id }}
+    </p>
+    <p class="date">{{ card().subTitle }}</p>
+  </div>
+</a>

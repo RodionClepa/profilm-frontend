@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
-import { Theme, ThemeService } from '../services/theme/theme.service';
 import { headerNavigation } from '../../shared/constants/header.constants';
 import { ThemeSelectorComponent } from "./theme-selector/theme-selector.component";
 

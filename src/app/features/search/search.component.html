@@ -1,0 +1,39 @@
+<div class="search-bar-wrapper">
+  <input
+    placeholder="Type..."
+    class="search-input"
+    [(ngModel)]="searchInput"
+    (keydown.enter)="getMedia()"
+  />
+  <button class="search-button" (click)="getMedia()">Search</button>
+</div>
+
+<ul class="type-search">
+  <li>
+    <button
+      (click)="selectMediaType(searchMediaType.MOVIE)"
+      [class.active]="typeMedia === searchMediaType.MOVIE"
+    >
+      Movies
+    </button>
+  </li>
+  <li>
+    <button
+      (click)="selectMediaType(searchMediaType.TV)"
+      [class.active]="typeMedia === searchMediaType.TV"
+    >
+      TVs
+    </button>
+  </li>
+  <!-- <li><button>Persons</button></li> -->
+</ul>
+
+<main>
+  @if (!results) {
+  <h1>TYPE SOMETHING</h1>
+  } @else {
+  <app-search-media-results
+    [cardList]="results.results"
+  ></app-search-media-results>
+  }
+</main>

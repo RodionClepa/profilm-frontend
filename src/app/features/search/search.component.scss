@@ -1,0 +1,59 @@
+@use "variables" as *;
+
+.search-bar-wrapper {
+  display: flex;
+
+  .search-input {
+    padding: $padding-sm;
+    background: $pink-tint;
+    color: $text-color;
+    border: 1px solid $border-color;
+    flex: 1;
+  }
+
+  .search-button {
+    padding: $padding-sm;
+    border: 1px solid $border-color;
+    background: $pink-tint;
+    color: $text-color;
+    border-left: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background: $blue-tint;
+    }
+  }
+}
+
+.type-search {
+  display: inline-flex;
+  list-style: none;
+  border-bottom: 1px solid $border-color;
+
+  li {
+    button {
+      padding: $padding-sm;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $text-color;
+
+      &:hover,
+      &:focus,
+      &.active {
+        background: $blue-tint;
+      }
+    }
+
+    border-left: 1px solid $border-color;
+
+    &:last-child {
+      border-right: 1px solid $border-color;
+    }
+  }
+}
+
+main {
+  margin-top: $gap-sm;
+}

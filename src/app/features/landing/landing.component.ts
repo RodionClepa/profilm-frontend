@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmMediaService } from '../../shared/services/film-media/film-media.service';
 import { MovieResponse, TVResponse } from '../../shared/types/movie-tv.type';
-import { SwiperCard, SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
+import { SwiperHorizontalCardsComponent } from "../../shared/components/swiper-horizontal-films/swiper-horizontal-cards.component";
 import { FilmMediaMapperService } from '../../shared/mappers/film-media/film-media-mapper.service';
 import { TimeWindow } from '../../shared/constants/movieApi.constants';
 import { PromoCard, PromoSliderComponent } from "./promo-slider/promo-slider.component";
 import { posterSize } from '../../shared/constants/image-sizes.constants';
+import { CardMedia } from '../../shared/components/card-media/card-media.component';
 
 @Component({
   selector: 'app-landing',
@@ -17,11 +18,11 @@ export class LandingComponent implements OnInit {
 
   constructor(private filmMediaService: FilmMediaService, private filmMediaMapper: FilmMediaMapperService) { }
 
-  popularMovies: SwiperCard[] = [];
-  popularTV: SwiperCard[] = [];
+  popularMovies: CardMedia[] = [];
+  popularTV: CardMedia[] = [];
   trendingMovies: PromoCard[] = [];
-  trendingTVs: SwiperCard[] = [];
-  upcomingMovies: SwiperCard[] = [];
+  trendingTVs: CardMedia[] = [];
+  upcomingMovies: CardMedia[] = [];
 
   ngOnInit() {
     this.filmMediaService.moviePopular({}).subscribe({
