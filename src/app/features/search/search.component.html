@@ -27,6 +27,7 @@
   </li>
   <!-- <li><button>Persons</button></li> -->
 </ul>
+{{ typeMedia }}
 
 <main>
   @if (!results) {
@@ -40,7 +41,7 @@
     <button
       class="pagination-button bg-transition"
       [disabled]="page() <= 1"
-      (click)="previousPage()"
+      (click)="goToPage(page() - 1)"
     >
       << Previous
     </button>
@@ -52,7 +53,7 @@
     <button
       class="pagination-button bg-transition"
       [disabled]="page() >= results.totalPages"
-      (click)="nextPage()"
+      (click)="goToPage(page() + 1)"
     >
       Next >>
     </button>
