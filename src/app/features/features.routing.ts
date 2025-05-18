@@ -26,6 +26,14 @@ export const featuresRoutes: Routes = [
       {
         path: `${ROUTES_TOKENS.SEARCH}`,
         loadComponent: () => import('./search/search.component').then(m => m.SearchComponent)
+      },
+      {
+        path: `${ROUTES_TOKENS.AUTH}`,
+        loadComponent: () => import('./google-auth/google-auth.component').then(m => m.GoogleAuthComponent)
+      },
+      {
+        path: `${ROUTES_TOKENS.SUCCESS_AUTH}`,
+        loadComponent: () => import('./auth-success/auth-success.component').then(m => m.AuthSuccessComponent)
       }
     ]
   },
