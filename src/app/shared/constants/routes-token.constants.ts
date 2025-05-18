@@ -6,7 +6,9 @@ export const ROUTES_TOKENS = {
   DETAILS: 'details',
   NOT_FOUND: 'not-found',
   PERSON: 'person',
-  SEARCH: 'search'
+  SEARCH: 'search',
+  AUTH: 'auth',
+  SUCCESS_AUTH: 'auth-success'
 } as const;
 
 export const PARAM_TOKENS = {

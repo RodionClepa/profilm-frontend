@@ -12,6 +12,14 @@ export class ApiService {
     return environment.apiUrl + '/api';
   }
 
+  private auth(): string {
+    return `${this.api()}/auth`;
+  }
+
+  public exchangeUUIDForJWT(): string {
+    return `${this.auth()}/exchange-uuid`;
+  }
+
   private movies(): string {
     return `${this.api()}/movies`
   }

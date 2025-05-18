@@ -9,7 +9,6 @@ import { TimeWindow } from '../../constants/movieApi.constants';
 import { MovieDetailsResponse } from '../../types/movie-details.type';
 import { TVDetailsResponse } from '../../types/tv-details.type';
 import { FilmMediaMapperService } from '../../mappers/film-media/film-media-mapper.service';
-import { CardMedia } from '../../components/card-media/card-media.component';
 import { SearchMediaType } from '../../../features/search/search.component';
 import { SearchMediaResults } from '../../types/media.type';
 
