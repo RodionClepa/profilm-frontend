@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
     this.page() + 1,
     this.page() + 2,
   ]);
+  userMessage: string = "Type something";
 
   constructor(private route: ActivatedRoute, private router: Router, private filmMediaService: FilmMediaService, private filmMediaMapper: FilmMediaMapperService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
@@ -78,6 +79,11 @@ export class SearchComponent implements OnInit {
     }).subscribe({
       next: (results) => {
         this.results = results;
+      },
+      error: (err) => {
+        console.log("status", err.status)
+        if (err.status === 403) this.userMessage = "No token provided"
+        if (err.status === 401) this.userMessage = "Invalid token relogin again"
       }
     });
     this.updateQuery();

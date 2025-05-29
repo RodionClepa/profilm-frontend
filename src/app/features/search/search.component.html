@@ -30,7 +30,7 @@
 
 <main>
   @if (!results) {
-  <p class="user-message">Type something</p>
+  <p class="user-message">{{ userMessage }}</p>
   } @else {
   <app-search-media-results
     [cardList]="results.results"

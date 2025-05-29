@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
 import { ErrorApiHandlerService } from '../error-api-handler/error-api-handler.service';
 import { MovieResponse, TVResponse } from '../../types/movie-tv.type';
@@ -139,7 +139,9 @@ export class FilmMediaService {
 
   private searchMovies({ page = 1, includeAdult = false, imageSize = posterSize.extraLarge, searchName }: { page?: number, includeAdult?: boolean, imageSize?: number, searchName: string }): Observable<MovieResponse> {
     const params = this.buildMediaParams(page, includeAdult, imageSize, searchName);
-    return this.http.get<MovieResponse>(this.apiService.searchMovies(), { params })
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<MovieResponse>(this.apiService.searchMovies(), { headers, params })
       .pipe(
         catchError(this.errorHandler.handleError<MovieResponse>('searchMovies'))
       );
@@ -147,7 +149,9 @@ export class FilmMediaService {
 
   private searchTVs({ page = 1, includeAdult = false, imageSize = posterSize.extraLarge, searchName }: { page?: number, includeAdult?: boolean, imageSize?: number, searchName: string }): Observable<TVResponse> {
     const params = this.buildMediaParams(page, includeAdult, imageSize, searchName);
-    return this.http.get<TVResponse>(this.apiService.searchTVs(), { params })
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<TVResponse>(this.apiService.searchTVs(), { headers, params })
       .pipe(
         catchError(this.errorHandler.handleError<TVResponse>('searchTVs'))
       );
