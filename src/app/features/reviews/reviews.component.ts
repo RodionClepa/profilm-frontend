@@ -23,7 +23,6 @@ export class ReviewsComponent implements OnInit {
   }
 
   private generateStarArray(rating: number): number[] {
-    console.log("generateStarArray")
     const stars: number[] = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;

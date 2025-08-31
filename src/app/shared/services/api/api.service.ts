@@ -12,6 +12,22 @@ export class ApiService {
     return environment.apiUrl + '/api';
   }
 
+  private auth(): string {
+    return `${this.api()}/auth`;
+  }
+
+  public exchangeUUIDForJWT(): string {
+    return `${this.auth()}/exchange-uuid`;
+  }
+
+  public getPublicKey(): string {
+    return `${this.auth()}/public-key`;
+  }
+
+  public googleCallback(): string {
+    return `${this.api()}/auth/google/callback`
+  }
+
   private movies(): string {
     return `${this.api()}/movies`
   }
