@@ -20,6 +20,14 @@ export class ApiService {
     return `${this.auth()}/exchange-uuid`;
   }
 
+  public getPublicKey(): string {
+    return `${this.auth()}/public-key`;
+  }
+
+  public googleCallback(): string {
+    return `${this.api()}/auth/google/callback`
+  }
+
   private movies(): string {
     return `${this.api()}/movies`
   }

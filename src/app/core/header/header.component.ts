@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, WritableSignal } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { headerNavigation } from '../../shared/constants/header.constants';
 import { ThemeSelectorComponent } from "./theme-selector/theme-selector.component";
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { GoogleAuthService } from '../../shared/services/google-auth/google-auth.service';
+import { JwtPayload } from '../../shared/types/auth.type';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +13,11 @@ import { ThemeSelectorComponent } from "./theme-selector/theme-selector.componen
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
   headerNavigation = headerNavigation;
+  authService = inject(AuthService);
+  isAuthenticated = computed(() => this.authService.isAuthenticated());
+  data = computed(() => this.authService.data());
+  googleAuthService = inject(GoogleAuthService);
 
   openedTab: string | null = "";
   sidebar: boolean = false;
@@ -55,5 +61,14 @@ export class HeaderComponent {
 
   closeSidebar() {
     this.sidebar = false;
+  }
+
+  handleSignIn() {
+    if (this.isAuthenticated()) {
+      this.authService.signOut();
+    }
+    else {
+      this.googleAuthService.loginWithGoogle();
+    }
   }
 }

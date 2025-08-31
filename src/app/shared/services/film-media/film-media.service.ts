@@ -118,7 +118,6 @@ export class FilmMediaService {
         searchName: searchName
       }).pipe(
         map((response: TVResponse) => {
-          console.log("response", response);
           return {
             page: response.page,
             results: response.results.map((tv) => this.filmMediaMapper.searchResultTVCard(tv)),

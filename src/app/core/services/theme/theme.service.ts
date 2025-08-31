@@ -25,7 +25,6 @@ export class ThemeService {
 
   private initTheme(): void {
     if (isPlatformBrowser(this.platformId)) {
-      console.log('initTheme')
       const savedTheme = localStorage.getItem(this.storageKey) as Theme;
 
       if (savedTheme && Object.values(Theme).includes(savedTheme)) {

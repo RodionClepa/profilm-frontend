@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../shared/services/auth/auth.service';
+import { Injectable } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../../environments/environment.development';
+import { firstValueFrom, Observable } from 'rxjs';
+import { ApiService } from '../api/api.service';
 
-@Component({
-  selector: 'app-google-auth',
-  imports: [],
-  templateUrl: './google-auth.component.html',
-  styleUrl: './google-auth.component.scss'
+@Injectable({
+  providedIn: 'root'
 })
-export class GoogleAuthComponent {
-  constructor(private authService: AuthService) { }
+export class GoogleAuthService {
 
-  async loginWithGoogle() {
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService
+  ) { }
+
+  loginWithGoogle(): void {
     const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const clientId = '85986930993-32aqufgu5av40es3g011tqibnhjhql55.apps.googleusercontent.com';
-    const redirectUri = 'http://localhost:3000/api/auth/google/callback'; // Server callback
+    const clientId = environment.googleClientId;
+    const redirectUri = this.apiService.googleCallback();
     const scope = 'email profile';
     const responseType = 'code';
     const accessType = 'offline';
@@ -32,19 +36,19 @@ export class GoogleAuthComponent {
       `width=${width},height=${height},left=${left},top=${top}`
     );
 
+    // Handle the response from the popup
     const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== 'http://localhost:4200') return;
+      const expectedOrigin = environment.production
+        ? environment.apiUrl
+        : 'http://localhost:4200';
+
+      if (event.origin !== expectedOrigin) return;
 
       if (event.data.type !== 'uuid_exchange') return;
 
       const uuid = event.data.uuid;
       if (uuid) {
-        console.log('Received uuid:', uuid);
-        this.authService.exchangeUUID(uuid).subscribe({
-          next: (results) => {
-            localStorage.setItem("token", results.token);
-          }
-        });
+        firstValueFrom(this.authService.exchangeUUID(uuid));
         window.removeEventListener('message', handleMessage);
       }
     };

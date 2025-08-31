@@ -35,6 +35,31 @@ header {
     app-theme-selector {
       border-left: 1px solid $border-color;
     }
+
+    .user-signin {
+      border-left: 1px solid $border-color;
+      display: flex;
+
+      button {
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        color: $pink;
+        cursor: pointer;
+
+        svg {
+          width: 32px;
+          height: 32px;
+        }
+
+        @media only screen and (max-width: 768px) {
+          span {
+            display: none;
+          }
+        }
+      }
+    }
   }
 
   .logo-container {
