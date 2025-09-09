@@ -77,7 +77,7 @@
   @defer {
   <div>
     @switch (openTab()) { @case (TAB_TOKEN.WATCH) {
-    <app-player [filmId]="movie.id"></app-player>
+    <app-player [playerLink]="movie.link"></app-player>
     } @case (TAB_TOKEN.TRAILER) {
     <app-trailer [trailers]="formattedVideos"></app-trailer>
     } @case (TAB_TOKEN.EXTRAS) {

@@ -1,44 +1,20 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, input, PLATFORM_ID } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { input } from '@angular/core';
 
 @Component({
   selector: 'app-player',
-  imports: [],
   templateUrl: './player.component.html',
-  styleUrl: './player.component.scss'
+  styleUrl: './player.component.scss',
+  standalone: true,
 })
-export class PlayerComponent {
+export class PlayerComponent implements OnInit {
+  playerLink = input.required<string>();
+  safePlayerLink: SafeResourceUrl | null = null; // Allow null initially
 
-  filmId = input.required<number>();
+  constructor(private sanitizer: DomSanitizer) { }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  ngOnInit(): void {
+    this.safePlayerLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.playerLink());
   }
-
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId))
-      this.loadKinoboxScript();
-  }
-
-  private loadKinoboxScript(): void {
-    const script = document.createElement('script');
-    script.src = 'https://kinobox.tv/kinobox.min.js';
-    script.async = true;
-    script.onload = () => {
-      this.initializePlayer();
-    };
-    script.onerror = () => {
-      console.error('Failed to load Kinobox script');
-    };
-    document.body.appendChild(script);
-  }
-
-  private initializePlayer(): void {
-    (window as any).kbox('.kinobox_player', {
-      search: { tmdb: this.filmId() }, menu: {
-        default: 'menu_list',
-        mobile: 'menu_button'
-      }
-    });
-  }
-
 }

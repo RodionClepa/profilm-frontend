@@ -30,4 +30,5 @@ export interface MovieDetailsResponse {
   producer: MovieCrew | null;
   cast: CastResponse[];
   recommendations: Movie[];
+  link: string;
 }

@@ -57,4 +57,5 @@ export interface TVDetailsResponse {
   cast: CastResponse[];
   recommendations: TV[];
   seasonsEpisodes: TVSeasonDetails[];
+  link: string;
 }
